@@ -1,17 +1,15 @@
 <template>
     <div class="h-screen w-screen overlay" data-is-open={isOpen} onclick={handleOverlayClick} data-id="backdrop">
+        <div class="slds-grid slds-grid_vertical slds-grid_grow__direct px-10 pt-10 bg-neutral-0 content" data-is-open={isOpen}>
+            <div class="slds-grid" if:true={isOpen}>
 
-        <div class="content px-10 pt-10 bg-neutral-0 slds-grid slds-grid_vertical slds-grid_grow__direct" data-is-open={isOpen}>
-            <div class="slds-grid"  if:true={isOpen}>
-                <div>
-                    <div class="photo">{record.photo}</div>
-                </div>
-                <div class="slds-grid slds-grid_align-spread ml-6 w-100p">
+                <div class="photo">{record.photo}</div>
+                <div class="slds-grid slds-grid_align-spread w-100p ml-6">
                     <div>
-                        <div class="ui-title-2 mb-1">
+                        <div class="mb-1 ui-title-2">
                             {record.name} - {record.author}
                         </div>
-                        <div class="slds-grid slds-grid_vertical ui-body-1 mb-2">
+                        <div class="slds-grid slds-grid_vertical mb-2 ui-body-1">
                             <div>Owner: {record.owner}</div>
                             <div>Address: {record.address}</div>
                             <div>Contacts:</div>
@@ -32,8 +30,8 @@
                                 variant="primary"
                         ></c-ui-button>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>

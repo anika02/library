@@ -8,8 +8,8 @@ import {
 } from './helper';
 
 export default class SearchMain extends LightningElement {
-    @track selectedBook = null;
     @track bookOverviewIsOpen = false;
+    @track selectedBook = null;
 
     connectedCallback() {
         Promise.all([

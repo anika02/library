@@ -1,10 +1,11 @@
 <template>
-    <div class="slds-grid ui-border-top px-6 py-8 bg-primary-100 book-item text-temporary">
+    <div class="slds-grid px-6 py-8 bg-primary-100 ui-border-top">
         <div class="photo">{record.photo}</div>
-        <div class="slds-grid slds-grid_align-spread ml-5 w-100p">
+        <div class="slds-grid slds-grid_align-spread w-100p ml-5">
             <div>
-                <div class="ui-title-2 mb-1"
-                     onclick={handleOpenOverview}
+                <div
+                    class="ui-title-2 mb-1"
+                    onclick={handleOpenOverview}
                 >
                     {record.name} - {record.author}
                 </div>

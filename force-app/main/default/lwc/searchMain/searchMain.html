@@ -4,7 +4,8 @@
         record={selectedBook}
         onclose={handleCloseOverview}
     ></c-book-overview>
-    <div class="bg-primary-200">
+
+    <div class="bg-neutral-0">
         <template for:each={defaultRecords} for:item="item">
             <div key={item.Id}>
                 <c-book-list-item

@@ -9,11 +9,6 @@ const record = {
 };
 
 export const defaultRecords = [
-    record,
-    record,
-    record,
-    record,
-    record,
-    record,
-    record,
+    record, record, record,
+    record, record, record,
 ];
