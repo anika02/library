@@ -1,0 +1,354 @@
+@use "sass:color";
+
+
+:root
+{
+  /**
+   * Button theme
+   */
+  --ui-button-color-disabled: var(--color-secondary-200);
+  --ui-button-color-background-disabled: var(--color-cyan-100);
+
+  //PRIMARY
+  --ui-button-primary-background: var(--color-action-500);
+  --ui-button-primary-background-disabled: var(--color-cyan-100);
+  --ui-button-primary-icon-color-disabled: var(--color-secondary-200);
+  --ui-button-primary-color: var(--color-neutral-0);
+  --ui-button-primary-icon-color: var(--color-neutral-0);
+  --ui-button-primary-background-hover: var(--color-action-300);
+
+  //PRIMARY ACTION
+  --ui-button-primary-action-background: var(--color-cyan-100);
+  --ui-button-primary-action-background-disabled: var(--color-neutral-200);
+  --ui-button-primary-action-color: var(--color-action-500);
+  --ui-button-primary-action-icon-color: var(--color-action-500);
+  --ui-button-primary-action-background-hover: var(--color-action-500);
+  --ui-button-primary-action-color-hover: var(--color-neutral-0);
+  --ui-button-primary-action-icon-color-hover: var(--color-neutral-0);
+  --ui-button-primary-action-color-disabled: var(--color-neutral-500);
+
+  //SECONDARY
+  --ui-button-secondary-background:var(--color-neutral-0);
+  --ui-button-secondary-border-color:var(--color-action-500);
+  --ui-button-secondary-color:var(--color-action-500);
+  --ui-button-secondary-icon-color:var(--color-action-500);
+  --ui-button-secondary-border-color-disabled:var(--color-secondary-200);
+  --ui-button-secondary-background-hover:var(--color-neutral-0);
+  --ui-button-secondary-border-color-hover:var(--color-action-300);
+  --ui-button-secondary-color-hover:var(--color-action-300);
+  --ui-button-secondary-icon-color-hover:var(--color-action-300);
+
+  //LINK
+  --ui-button-link-color: var(--color-secondary-500);
+  --ui-button-link-color-hover: var(--color-action-500);
+}
+
+
+.ui-title-2 {
+  font-family: 'IBMPlexSans';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.ui-body-1 {
+  font-family: 'IBMPlexSans';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.ui-body-2 {
+  font-family: 'IBMPlexSans';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+$colors: (
+        "temporary": #483233,
+
+        "primary-100": #F1F3F9,
+        "primary-200": #3E5A7A,
+        "primary-500": #133C55,
+        "primary-600": #081721,
+
+        "secondary-100": #D8E0E6,
+        "secondary-200": #A9B6C6,
+        "secondary-400": #527093,
+        "secondary-500": #3E5A7A,
+
+        "action-100": #F1F3F9,
+        "action-200": #7FB1CF,
+        "action-300": #3A8AB9,
+        "action-500": #1074AF,
+
+        "neutral-0": #FFFFFF,
+        "neutral-100": #FAFAFA,
+        "neutral-200": #E6E6E9,
+        "neutral-500": #878E97,
+        "neutral-600": #697079,
+        "neutral-1000": #000000,
+
+        "cyan-50": rgb(236 254 255),
+        "cyan-100": rgb(207 250 254),
+        "cyan-200": rgb(165 243 252),
+        "cyan-300": rgb(103 232 249),
+        "cyan-400": rgb(34 211 238),
+        "cyan-500": rgb(6 182 212),
+        "cyan-600": rgb(8 145 178),
+        "cyan-700": rgb(14 116 144),
+        "cyan-800": rgb(21 94 117),
+        "cyan-900": rgb(22 78 99),
+);
+
+:root {
+  @each $color, $hex in $colors {
+    --color-#{$color}: #{$hex};
+  }
+}
+
+
+@each $color, $hex in $colors {
+  .text-#{$color} {
+    color: var(--color-#{$color});
+  }
+
+  .bg-#{$color} {
+    background: var(--color-#{$color});
+  }
+
+  .ui-border-#{$color} {
+    border-color: var(--color-#{$color});
+  }
+}
+
+
+$sizes: (
+        "0": 0,
+        "1": 0.25rem,//4px
+        "2": 0.5rem,//8px
+        "3": 0.75rem,//12px
+        "4": 1rem,//16px
+        "5": 1.25rem,//20px
+        "6": 1.5rem,//24px
+        "7": 1.75rem,//28px
+        "8": 2rem,//32px
+        "9": 2.25rem,//36px
+        "10": 2.5rem,//40px
+
+);
+
+:root {
+  @each $size, $rem in $sizes {
+    --size-#{$size}: #{$rem};
+  }
+}
+
+@each $size, $rem in $sizes {
+  .p-#{$size} {
+    padding: $rem;
+  }
+
+  .py-#{$size} {
+    padding-top: $rem;
+    padding-bottom: $rem;
+  }
+
+  .px-#{$size} {
+    padding-left: $rem;
+    padding-right: $rem;
+  }
+
+  .pt-#{$size} {
+    padding-top: $rem;
+  }
+
+  .pr-#{$size} {
+    padding-right: $rem;
+  }
+
+  .pb-#{$size} {
+    padding-bottom: $rem;
+  }
+
+  .pl-#{$size} {
+    padding-left: $rem;
+  }
+
+  .m-#{$size} {
+    margin: $rem;
+  }
+
+  .-m-#{$size} {
+    margin: $rem * -1;
+  }
+
+  .my-#{$size} {
+    margin-top: $rem;
+    margin-bottom: $rem;
+  }
+
+  .-my-#{$size} {
+    margin-top: $rem * -1;
+    margin-bottom: $rem * -1;
+  }
+
+  .mx-#{$size} {
+    margin-left: $rem;
+    margin-right: $rem;
+  }
+
+  .-mx-#{$size} {
+    margin-left: $rem * -1;
+    margin-right: $rem * -1;
+  }
+
+  .mt-#{$size} {
+    margin-top: $rem;
+  }
+
+  .-mt-#{$size} {
+    margin-top: $rem * -1;
+  }
+
+  .mr-#{$size} {
+    margin-right: $rem;
+  }
+
+  .-mr-#{$size} {
+    margin-right: $rem * -1;
+  }
+
+  .mb-#{$size} {
+    margin-bottom: $rem;
+  }
+
+  .-mb-#{$size} {
+    margin-bottom: $rem * -1;
+  }
+
+  .ml-#{$size} {
+    margin-left: $rem;
+  }
+
+  .-ml-#{$size} {
+    margin-left: $rem * -1;
+  }
+
+  .h-#{$size} {
+    height: $rem;
+  }
+
+  .max-h-#{$size} {
+    max-height: $rem;
+  }
+
+  .min-h-#{$size} {
+    min-height: $rem;
+  }
+
+  .w-#{$size} {
+    width: $rem;
+  }
+
+  .max-w-#{$size} {
+    max-width: $rem;
+  }
+
+  .min-w-#{$size} {
+    min-width: $rem;
+  }
+
+  .ui-rounded-#{$size} {
+    border-radius: $rem;
+  }
+
+  .gap-#{$size} {
+    gap: $rem;
+  }
+
+  .column-gap-#{$size} {
+    column-gap: $rem;
+  }
+}
+
+@for $i from 1 through 100 {
+  .w-#{$i}p {
+    width: $i * 1%;
+  }
+  .h-#{$i}p {
+    height: $i * 1%;
+  }
+}
+
+
+.ui-border {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.ui-border-top {
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+
+.ui-border-right {
+  border-right-width: 1px;
+  border-right-style: solid;
+}
+
+.ui-border-left {
+  border-left-width: 1px;
+  border-left-style: solid;
+}
+
+.ui-border-bottom {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.ui-border-none {
+  border:none;
+}
+
+.bg-none {
+  background: none;
+}
+
+
+.h-auto	{
+  height: auto;
+}
+
+.h-px	{
+  height: 1px;
+}
+
+.h-full	{
+  height: 100%;
+}
+
+.h-screen	{
+  height: 100vh;
+}
+
+.w-auto	{
+  width: auto;
+}
+
+.w-px	{
+  width: 1px;
+}
+
+.w-full	{
+  width: 100%;
+}
+
+.w-screen	{
+  width: 100vw;
+}
+

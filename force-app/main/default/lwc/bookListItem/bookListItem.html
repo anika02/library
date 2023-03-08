@@ -1,0 +1,47 @@
+<template>
+    <div class="slds-grid ui-border-top px-6 py-8 bg-primary-100 book-item text-temporary">
+        <div class="photo">{record.photo}</div>
+        <div class="slds-grid slds-grid_align-spread ml-5 w-100p">
+            <div>
+                <div class="ui-title-2 mb-1"
+                     onclick={handleOpenOverview}
+                >
+                    {record.name} - {record.author}
+                </div>
+                <div class="ui-body-1 mb-2">
+                    {record.address}
+                </div>
+                <div class="slds-grid slds-grid_vertical-align-start mb-2">
+                    <c-ui-category
+                            category="Adventure"
+                            class="mr-2"
+                    ></c-ui-category>
+                    <c-ui-category
+                            category="Horror"
+                            class="mr-2"
+                    ></c-ui-category>
+                    <c-ui-category
+                            category="Action"
+                            class="mr-2"
+                    ></c-ui-category>
+                </div>
+                <div class="ui-body-1 mb-1">
+                    {record.shortDescription}
+                </div>
+                <div class="ui-body-1">
+                    Show More
+                </div>
+            </div>
+            <div>
+                <c-ui-button
+                        variant="link"
+                        icon-name="add"
+                ></c-ui-button>
+                <c-ui-button
+                        value="reserve"
+                        variant="primary"
+                ></c-ui-button>
+            </div>
+        </div>
+    </div>
+</template>

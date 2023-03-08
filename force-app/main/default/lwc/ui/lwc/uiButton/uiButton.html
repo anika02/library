@@ -1,0 +1,16 @@
+<template>
+    <div class="slds-grid slds-grow">
+        <button class={bodyClasses} disabled={disabled}>
+            <span if:true={iconName} class="icon">
+                <c-ui-svg
+                        class-name={iconClassName}
+                        icon={iconName}
+                ></c-ui-svg>
+            </span>
+
+            <span if:true={value} class="value">
+                {value}
+            </span>
+        </button>
+    </div>
+</template>

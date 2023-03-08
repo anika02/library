@@ -1,0 +1,40 @@
+<template>
+    <div class="h-screen w-screen overlay" data-is-open={isOpen} onclick={handleOverlayClick} data-id="backdrop">
+
+        <div class="content px-10 pt-10 bg-neutral-0 slds-grid slds-grid_vertical slds-grid_grow__direct" data-is-open={isOpen}>
+            <div class="slds-grid"  if:true={isOpen}>
+                <div>
+                    <div class="photo">{record.photo}</div>
+                </div>
+                <div class="slds-grid slds-grid_align-spread ml-6 w-100p">
+                    <div>
+                        <div class="ui-title-2 mb-1">
+                            {record.name} - {record.author}
+                        </div>
+                        <div class="slds-grid slds-grid_vertical ui-body-1 mb-2">
+                            <div>Owner: {record.owner}</div>
+                            <div>Address: {record.address}</div>
+                            <div>Contacts:</div>
+                            <div>phone: (067) 322 77 22</div>
+                            <div>email: test@example.com</div>
+                            <div>telegram: (067) 322 77 22</div>
+                            <div>viber: (067) 322 77 22</div>
+                            <div>instagram: instagram_link</div>
+                        </div>
+                    </div>
+                    <div>
+                        <c-ui-button
+                                variant="link"
+                                icon-name="add"
+                        ></c-ui-button>
+                        <c-ui-button
+                                value="reserve"
+                                variant="primary"
+                        ></c-ui-button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
