@@ -5,6 +5,13 @@
   background-color: #e6e6e9;
 }
 
+.calendar {
+  height: 272px;
+  min-width: 354px;
+  color: #697079;
+  background-color: #e6e6e9;
+}
+
 .overlay {
   z-index: 100;
   position: fixed;

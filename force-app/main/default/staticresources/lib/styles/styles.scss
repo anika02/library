@@ -28,12 +28,12 @@
 
   //SECONDARY
   --ui-button-secondary-background:var(--color-neutral-0);
-  --ui-button-secondary-border-color:var(--color-action-500);
-  --ui-button-secondary-color:var(--color-action-500);
-  --ui-button-secondary-icon-color:var(--color-action-500);
+  --ui-button-secondary-border-color:var(--color-secondary-500);
+  --ui-button-secondary-color:var(--color-secondary-500);
+  --ui-button-secondary-icon-color:var(--color-secondary-500);
   --ui-button-secondary-border-color-disabled:var(--color-secondary-200);
   --ui-button-secondary-background-hover:var(--color-neutral-0);
-  --ui-button-secondary-border-color-hover:var(--color-action-300);
+  --ui-button-secondary-border-color-hover:var(--color-action-500);
   --ui-button-secondary-color-hover:var(--color-action-300);
   --ui-button-secondary-icon-color-hover:var(--color-action-300);
 
@@ -42,6 +42,13 @@
   --ui-button-link-color-hover: var(--color-action-500);
 }
 
+.ui-title-1 {
+  font-family: 'IBMPlexSans';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 32px;
+}
 
 .ui-title-2 {
   font-family: 'IBMPlexSans';
@@ -57,6 +64,14 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
+}
+
+.ui-body-1_height {
+  font-family: 'IBMPlexSans';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 .ui-body-2 {
@@ -138,6 +153,7 @@ $sizes: (
         "8": 2rem,//32px
         "9": 2.25rem,//36px
         "10": 2.5rem,//40px
+        "30": 7.5rem,//120px
 
 );
 
@@ -284,6 +300,9 @@ $sizes: (
   }
 }
 
+:root {
+  --border-radius: 0.25rem;
+}
 
 .ui-border {
   border-width: 1px;
@@ -318,6 +337,9 @@ $sizes: (
   background: none;
 }
 
+.ui-rounded {
+  border-radius: var(--border-radius);
+}
 
 .h-auto	{
   height: auto;
@@ -351,3 +373,10 @@ $sizes: (
   width: 100vw;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
+.buttons-group-width {
+  width: 8rem;
+}
