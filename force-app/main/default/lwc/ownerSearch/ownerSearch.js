@@ -8,7 +8,7 @@ import {
     pages
 } from './helper';
 
-export default class SearchMain extends LightningElement {
+export default class OwnerSearch extends LightningElement {
     @track bookOverviewIsOpen = false;
     @track selectedBook = null;
 

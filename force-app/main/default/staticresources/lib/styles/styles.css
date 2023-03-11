@@ -463,6 +463,8 @@
   --size-8: 2rem;
   --size-9: 2.25rem;
   --size-10: 2.5rem;
+  --size-11: 2.75rem;
+  --size-12: 3rem;
   --size-30: 7.5rem;
 }
 
@@ -1852,6 +1854,258 @@
   column-gap: 2.5rem;
 }
 
+.p-11 {
+  padding: 2.75rem;
+}
+
+.py-11 {
+  padding-top: 2.75rem;
+  padding-bottom: 2.75rem;
+}
+
+.px-11 {
+  padding-left: 2.75rem;
+  padding-right: 2.75rem;
+}
+
+.pt-11 {
+  padding-top: 2.75rem;
+}
+
+.pr-11 {
+  padding-right: 2.75rem;
+}
+
+.pb-11 {
+  padding-bottom: 2.75rem;
+}
+
+.pl-11 {
+  padding-left: 2.75rem;
+}
+
+.m-11 {
+  margin: 2.75rem;
+}
+
+.-m-11 {
+  margin: -2.75rem;
+}
+
+.my-11 {
+  margin-top: 2.75rem;
+  margin-bottom: 2.75rem;
+}
+
+.-my-11 {
+  margin-top: -2.75rem;
+  margin-bottom: -2.75rem;
+}
+
+.mx-11 {
+  margin-left: 2.75rem;
+  margin-right: 2.75rem;
+}
+
+.-mx-11 {
+  margin-left: -2.75rem;
+  margin-right: -2.75rem;
+}
+
+.mt-11 {
+  margin-top: 2.75rem;
+}
+
+.-mt-11 {
+  margin-top: -2.75rem;
+}
+
+.mr-11 {
+  margin-right: 2.75rem;
+}
+
+.-mr-11 {
+  margin-right: -2.75rem;
+}
+
+.mb-11 {
+  margin-bottom: 2.75rem;
+}
+
+.-mb-11 {
+  margin-bottom: -2.75rem;
+}
+
+.ml-11 {
+  margin-left: 2.75rem;
+}
+
+.-ml-11 {
+  margin-left: -2.75rem;
+}
+
+.h-11 {
+  height: 2.75rem;
+}
+
+.max-h-11 {
+  max-height: 2.75rem;
+}
+
+.min-h-11 {
+  min-height: 2.75rem;
+}
+
+.w-11 {
+  width: 2.75rem;
+}
+
+.max-w-11 {
+  max-width: 2.75rem;
+}
+
+.min-w-11 {
+  min-width: 2.75rem;
+}
+
+.ui-rounded-11 {
+  border-radius: 2.75rem;
+}
+
+.gap-11 {
+  gap: 2.75rem;
+}
+
+.column-gap-11 {
+  column-gap: 2.75rem;
+}
+
+.p-12 {
+  padding: 3rem;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.pt-12 {
+  padding-top: 3rem;
+}
+
+.pr-12 {
+  padding-right: 3rem;
+}
+
+.pb-12 {
+  padding-bottom: 3rem;
+}
+
+.pl-12 {
+  padding-left: 3rem;
+}
+
+.m-12 {
+  margin: 3rem;
+}
+
+.-m-12 {
+  margin: -3rem;
+}
+
+.my-12 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.-my-12 {
+  margin-top: -3rem;
+  margin-bottom: -3rem;
+}
+
+.mx-12 {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.-mx-12 {
+  margin-left: -3rem;
+  margin-right: -3rem;
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
+.-mt-12 {
+  margin-top: -3rem;
+}
+
+.mr-12 {
+  margin-right: 3rem;
+}
+
+.-mr-12 {
+  margin-right: -3rem;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
+.-mb-12 {
+  margin-bottom: -3rem;
+}
+
+.ml-12 {
+  margin-left: 3rem;
+}
+
+.-ml-12 {
+  margin-left: -3rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.max-h-12 {
+  max-height: 3rem;
+}
+
+.min-h-12 {
+  min-height: 3rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.max-w-12 {
+  max-width: 3rem;
+}
+
+.min-w-12 {
+  min-width: 3rem;
+}
+
+.ui-rounded-12 {
+  border-radius: 3rem;
+}
+
+.gap-12 {
+  gap: 3rem;
+}
+
+.column-gap-12 {
+  column-gap: 3rem;
+}
+
 .p-30 {
   padding: 7.5rem;
 }
@@ -2857,4 +3111,9 @@
 
 .buttons-group-width {
   width: 8rem;
+}
+
+.ui-scrollbar {
+  overflow: hidden;
+  overflow-y: auto;
 }

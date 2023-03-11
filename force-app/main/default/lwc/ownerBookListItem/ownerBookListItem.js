@@ -1,6 +1,7 @@
 import {api, LightningElement} from 'lwc';
 
-export default class BookListItem extends LightningElement {
+
+export default class OwnerBookListItem extends LightningElement {
     @api record;
 
     handleOpenOverview() {

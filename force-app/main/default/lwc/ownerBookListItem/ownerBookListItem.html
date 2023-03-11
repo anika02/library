@@ -44,21 +44,26 @@
             <div class="buttons-group-width">
                 <div class="slds-grid slds-grid_align-center w-full">
                     <c-ui-button
-                            icon-name="favorite"
-                            variant="link"
-                    ></c-ui-button>
-                    <c-ui-button
                             icon-name="chat"
                             variant="link"
                     ></c-ui-button>
                     <c-ui-button
-                            icon-name="bookmark"
+                            icon-name="history"
+                            variant="link"
+                    ></c-ui-button>
+                    <c-ui-button
+                            icon-name="edit"
+                            variant="link"
+                    ></c-ui-button>
+                    <c-ui-button
+                            icon-name="delete"
                             variant="link"
                     ></c-ui-button>
                 </div>
                 <c-ui-button
+                        if:true={hasStatus}
                         class="w-full"
-                        value="reserve"
+                        value="change status"
                         variant="secondary"
                 ></c-ui-button>
             </div>

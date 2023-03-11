@@ -1,0 +1,127 @@
+<template>
+    <div class="h-screen w-screen overlay" data-is-open={isOpen} onclick={handleOverlayClick} data-id="backdrop">
+        <div class="slds-grid slds-grid_vertical slds-grid_grow__direct slds-scrollable px-10 bg-neutral-0 content" data-is-open={isOpen}>
+            <div if:true={isOpen}>
+                <div class="slds-grid py-10">
+                    <div class="photo">{record.photo}</div>
+                    <div class="slds-grid slds-grid_align-spread w-full ml-6">
+                        <div>
+                            <div class="mb-1 ui-title-1">
+                                {record.name} - {record.author}
+                            </div>
+                            <div class="slds-grid slds-wrap ui-body-1_height">
+                                <div class="slds-col slds-size_1-of-2">Owner:</div>
+                                <div class="slds-col slds-size_1-of-2">{record.owner}</div>
+                                <div class="slds-col slds-size_1-of-2">Address:</div>
+                                <div class="slds-col slds-size_1-of-2">{record.address}</div>
+                            </div>
+                            <div class="ui-body-1_height">Contacts:</div>
+                            <div class="ui-body-1_height">
+                                <template for:each={contacts} for:item="item">
+                                    <div key={item.Id} class="slds-grid slds-wrap">
+                                        <div class="slds-col slds-size_1-of-2">{item.key}</div>
+                                        <div class="slds-col slds-size_1-of-2">{item.value}</div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="buttons-group-width">
+                            <div class="slds-grid slds-grid_align-center w-full">
+                                <c-ui-button
+                                        icon-name="chat"
+                                        variant="link"
+                                ></c-ui-button>
+                                <c-ui-button
+                                        icon-name="history"
+                                        variant="link"
+                                ></c-ui-button>
+                                <c-ui-button
+                                        icon-name="edit"
+                                        variant="link"
+                                ></c-ui-button>
+                                <c-ui-button
+                                        icon-name="delete"
+                                        variant="link"
+                                ></c-ui-button>
+                            </div>
+                            <c-ui-button
+                                    if:true={hasStatus}
+                                    class="w-full"
+                                    value="change status"
+                                    variant="secondary"
+                            ></c-ui-button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="slds-grid py-10 ui-border-top ui-border-neutral-500">
+                    <div>
+                        <div class="mb-2 ui-title-2">
+                            Categories
+                        </div>
+                        <div class="slds-grid slds-grid_vertical-align-start mb-2">
+                            <c-ui-category
+                                    category="Adventure"
+                                    class="mr-2"
+                            ></c-ui-category>
+                            <c-ui-category
+                                    category="Horror"
+                                    class="mr-2"
+                            ></c-ui-category>
+                            <c-ui-category
+                                    category="Action"
+                                    class="mr-2"
+                            ></c-ui-category>
+                        </div>
+
+                        <div class="mt-4 mb-2 ui-title-2">
+                            Description
+                        </div>
+
+                        <div class="ui-body-1_height">
+                            {record.description}
+                        </div>
+                    </div>
+                    <div class="ml-4 calendar">{record.photo}</div>
+                </div>
+
+                <div class="py-10 ui-border-top ui-border-neutral-500">
+                    <div>
+                        <div class="mb-2 ui-title-2">
+                            Comments
+                        </div>
+
+                        <div class="ui-body-1_height pl-10 pt-4">
+                            <div>
+                                Superman (17 Jul 2021)
+                            </div>
+                            <div class="pl-10">
+                                {record.description}
+                            </div>
+                        </div>
+
+                        <div class="ui-body-1_height pl-10 pt-4">
+                            <div>
+                                Superman (17 Jul 2021)
+                            </div>
+                            <div class="pl-10">
+                                {record.description}
+                            </div>
+                        </div>
+
+                        <div class="ui-body-1_height pl-10 pt-4">
+                            <div>
+                                Superman (17 Jul 2021)
+                            </div>
+                            <div class="pl-10">
+                                {record.description}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>
