@@ -1,0 +1,32 @@
+<template>
+    <div class="slds-grid slds-grid_align-center pl-6 pr-8 py-2 bg-neutral-0">
+        <div class="slds-grid slds-grid_vertical-align-center">
+            <c-ui-button
+                icon-name="chevron-left"
+                variant="link"
+            ></c-ui-button>
+
+            <template for:each={pages} for:item="page">
+                <template if:false={page.isDots}>
+                    <c-ui-button
+                        key={page.value}
+                        class="ml-6"
+                        data-is-current={page.isCurrent}
+                        value={page.value}
+                        variant={page.variant}
+                    ></c-ui-button>
+                </template>
+
+                <template if:true={page.isDots}>
+                    <span key={page.value} class="ml-6 ui-body-2">...</span>
+                </template>
+            </template>
+
+            <c-ui-button
+                class="ml-6"
+                icon-name="chevron-right"
+                variant="link"
+            ></c-ui-button>
+        </div>
+    </div>
+</template>

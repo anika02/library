@@ -1,0 +1,28 @@
+<template>
+    <div class="slds-grid slds-grid_vertical-align-center p-6">
+        <div class="slds-grid slds-grid_align-spread w-full px-6 py-2 ui-border ui-rounded-8 ui-border-secondary-500">
+            <div class="ui-body-1 text-secondary-500 w-full">Search</div>
+            <c-ui-svg
+                class="text-secondary-500"
+                icon="search"
+            ></c-ui-svg>
+        </div>
+
+        <c-ui-button
+            class="ml-6"
+            icon-name="filter-list"
+            value="filters"
+            variant="secondary"
+        ></c-ui-button>
+        <c-ui-button
+            class="ml-6"
+            icon-name="view-list"
+            value="view"
+            variant="secondary"
+        ></c-ui-button>
+
+        <div class="slds-grid slds-grid_align-end ml-12 ui-title-1 w-60">
+            {pageName}
+        </div>
+    </div>
+</template>

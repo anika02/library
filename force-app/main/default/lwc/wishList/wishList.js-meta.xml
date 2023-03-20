@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>56.0</apiVersion>
-    <description>Owner Search</description>
+    <apiVersion>57.0</apiVersion>
+    <description>Wish List</description>
     <isExposed>true</isExposed>
-    <masterLabel>Owner Search</masterLabel>
+    <masterLabel>Wish List</masterLabel>
     <targets>
         <target>lightning__AppPage</target>
     </targets>

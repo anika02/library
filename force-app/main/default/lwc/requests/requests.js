@@ -5,7 +5,7 @@ import styles from "@salesforce/resourceUrl/lib";
 
 import { defaultRecords } from './helper';
 
-export default class SearchMain extends LightningElement {
+export default class Requests extends LightningElement {
     @track bookOverviewIsOpen = false;
     @track selectedBook = null;
 

@@ -1,14 +1,10 @@
 import {LightningElement, track} from 'lwc';
-import {loadStyle} from "lightning/platformResourceLoader";
+import {loadStyle} from 'lightning/platformResourceLoader';
 
-import styles from "@salesforce/resourceUrl/lib";
+import styles from '@salesforce/resourceUrl/lib';
+import { defaultRecords } from './helper';
 
-import {
-    defaultRecords,
-    pages
-} from './helper';
-
-export default class OwnerSearch extends LightningElement {
+export default class MyHistory extends LightningElement {
     @track bookOverviewIsOpen = false;
     @track selectedBook = null;
 
@@ -27,11 +23,7 @@ export default class OwnerSearch extends LightningElement {
         this.bookOverviewIsOpen = false;
     }
 
-    get defaultRecords() {
+    get records() {
         return defaultRecords;
-    }
-
-    get pages() {
-        return pages;
     }
 }

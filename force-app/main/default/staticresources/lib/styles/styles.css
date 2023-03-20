@@ -466,6 +466,7 @@
   --size-11: 2.75rem;
   --size-12: 3rem;
   --size-30: 7.5rem;
+  --size-60: 15rem;
 }
 
 .p-0 {
@@ -2230,6 +2231,132 @@
 
 .column-gap-30 {
   column-gap: 7.5rem;
+}
+
+.p-60 {
+  padding: 15rem;
+}
+
+.py-60 {
+  padding-top: 15rem;
+  padding-bottom: 15rem;
+}
+
+.px-60 {
+  padding-left: 15rem;
+  padding-right: 15rem;
+}
+
+.pt-60 {
+  padding-top: 15rem;
+}
+
+.pr-60 {
+  padding-right: 15rem;
+}
+
+.pb-60 {
+  padding-bottom: 15rem;
+}
+
+.pl-60 {
+  padding-left: 15rem;
+}
+
+.m-60 {
+  margin: 15rem;
+}
+
+.-m-60 {
+  margin: -15rem;
+}
+
+.my-60 {
+  margin-top: 15rem;
+  margin-bottom: 15rem;
+}
+
+.-my-60 {
+  margin-top: -15rem;
+  margin-bottom: -15rem;
+}
+
+.mx-60 {
+  margin-left: 15rem;
+  margin-right: 15rem;
+}
+
+.-mx-60 {
+  margin-left: -15rem;
+  margin-right: -15rem;
+}
+
+.mt-60 {
+  margin-top: 15rem;
+}
+
+.-mt-60 {
+  margin-top: -15rem;
+}
+
+.mr-60 {
+  margin-right: 15rem;
+}
+
+.-mr-60 {
+  margin-right: -15rem;
+}
+
+.mb-60 {
+  margin-bottom: 15rem;
+}
+
+.-mb-60 {
+  margin-bottom: -15rem;
+}
+
+.ml-60 {
+  margin-left: 15rem;
+}
+
+.-ml-60 {
+  margin-left: -15rem;
+}
+
+.h-60 {
+  height: 15rem;
+}
+
+.max-h-60 {
+  max-height: 15rem;
+}
+
+.min-h-60 {
+  min-height: 15rem;
+}
+
+.w-60 {
+  width: 15rem;
+}
+
+.max-w-60 {
+  max-width: 15rem;
+}
+
+.min-w-60 {
+  min-width: 15rem;
+}
+
+.ui-rounded-60 {
+  border-radius: 15rem;
+}
+
+.gap-60 {
+  gap: 15rem;
+}
+
+.column-gap-60 {
+  column-gap: 15rem;
 }
 
 .w-1p {

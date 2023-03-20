@@ -3,14 +3,14 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>myLibrary</componentName>
-                <identifier>c_myLibrary</identifier>
+                <componentName>requests</componentName>
+                <identifier>c_requests</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>My Library</masterLabel>
+    <masterLabel>Book Requests</masterLabel>
     <template>
         <name>flexipage:defaultAppHomeTemplate</name>
     </template>

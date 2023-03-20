@@ -3,8 +3,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>searchMain</componentName>
-                <identifier>c_searchMain</identifier>
+                <componentName>myHistory</componentName>
+                <identifier>c_myHistory</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>

@@ -1,22 +1,22 @@
 <template>
-    <c-book-overview
+    <c-owner-book-overview
             is-open={bookOverviewIsOpen}
             record={selectedBook}
             onclose={handleCloseOverview}
-    ></c-book-overview>
+    ></c-owner-book-overview>
 
     <div class="bg-neutral-0 h-full">
         <c-ui-search-tools
-                page-name="Search"
+                page-name="My Library"
         ></c-ui-search-tools>
 
         <div class="ui-scrollbar h-full">
             <template for:each={records} for:item="item">
                 <div key={item.Id}>
-                    <c-book-list-item
+                    <c-owner-book-list-item
                             record={item}
                             onopen_overview={handleOpenOverview}
-                    ></c-book-list-item>
+                    ></c-owner-book-list-item>
                 </div>
             </template>
         </div>

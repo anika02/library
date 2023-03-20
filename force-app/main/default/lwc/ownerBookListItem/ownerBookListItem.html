@@ -60,12 +60,18 @@
                             variant="link"
                     ></c-ui-button>
                 </div>
-                <c-ui-button
-                        if:true={hasStatus}
-                        class="w-full"
-                        value="change status"
-                        variant="secondary"
-                ></c-ui-button>
+
+                <div if:true={hasStatus} class="slds-grid slds-grid_align-center w-full">
+                    <c-ui-button
+                            icon-name="check"
+                            variant="secondary"
+                    ></c-ui-button>
+                    <c-ui-button
+                            class="ml-3"
+                            icon-name="close"
+                            variant="secondary"
+                    ></c-ui-button>
+                </div>
             </div>
         </div>
     </div>

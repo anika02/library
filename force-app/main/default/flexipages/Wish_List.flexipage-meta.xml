@@ -3,14 +3,14 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>myLibrary</componentName>
-                <identifier>c_myLibrary</identifier>
+                <componentName>wishList</componentName>
+                <identifier>c_wishList</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>My Library</masterLabel>
+    <masterLabel>Wish List</masterLabel>
     <template>
         <name>flexipage:defaultAppHomeTemplate</name>
     </template>
