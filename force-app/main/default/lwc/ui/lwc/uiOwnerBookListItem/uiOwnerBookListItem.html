@@ -10,27 +10,14 @@
                     >
                         {record.name} - {record.author}
                     </div>
-                    <c-ui-status
-                        if:true={hasStatus}
-                        class="ml-8"
-                        status={record.status}
-                    ></c-ui-status>
                 </div>
 
                 <div class="ui-body-1 mb-2">
-                    {record.address}{date}
+                    {record.address}
                 </div>
                 <div class="slds-grid slds-grid_vertical-align-start mb-2">
                     <c-ui-category
                         category="Adventure"
-                        class="mr-2"
-                    ></c-ui-category>
-                    <c-ui-category
-                        category="Horror"
-                        class="mr-2"
-                    ></c-ui-category>
-                    <c-ui-category
-                        category="Action"
                         class="mr-2"
                     ></c-ui-category>
                 </div>
@@ -44,10 +31,6 @@
             <div class="buttons-group-width">
                 <div class="slds-grid slds-grid_align-center w-full">
                     <c-ui-button
-                        icon-name="chat"
-                        variant="link"
-                    ></c-ui-button>
-                    <c-ui-button
                         icon-name="history"
                         variant="link"
                     ></c-ui-button>
@@ -58,18 +41,6 @@
                     <c-ui-button
                         icon-name="delete"
                         variant="link"
-                    ></c-ui-button>
-                </div>
-
-                <div if:true={hasStatus} class="slds-grid slds-grid_align-center w-full">
-                    <c-ui-button
-                        icon-name="check"
-                        variant="secondary"
-                    ></c-ui-button>
-                    <c-ui-button
-                        class="ml-3"
-                        icon-name="close"
-                        variant="secondary"
                     ></c-ui-button>
                 </div>
             </div>
