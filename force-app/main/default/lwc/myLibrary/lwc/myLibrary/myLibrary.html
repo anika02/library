@@ -1,26 +1,32 @@
 <template>
-    <c-ui-owner-book-overview
-            is-open={bookOverviewIsOpen}
-            record={selectedBook}
-            onclose={handleCloseOverview}
-    ></c-ui-owner-book-overview>
+  <c-ui-owner-book-overview
+    is-open={bookOverviewIsOpen}
+    record={selectedBook}
+    onclose={handleCloseOverview}
+  ></c-ui-owner-book-overview>
 
-    <div class="bg-neutral-0 h-full">
-        <c-ui-search-tools
-                page-name="My Library"
-        ></c-ui-search-tools>
 
-        <div class="ui-scrollbar h-full">
-            <template for:each={records} for:item="item">
-                <div key={item.Id}>
-                    <c-ui-owner-book-list-item
-                            record={item}
-                            onopen_overview={handleOpenOverview}
-                    ></c-ui-owner-book-list-item>
-                </div>
-            </template>
-        </div>
+  <div class="bg-neutral-0 h-full">
+    <c-ui-search-tools
+      page-name="My Library"
+    ></c-ui-search-tools>
 
-        <c-ui-pagination></c-ui-pagination>
+    <div if:true={hasRecords}>
+      <div class="ui-scrollbar h-full">
+        <template for:each={records} for:item="item">
+          <div key={item.Id}>
+            <c-my-library-book-list-item
+              record={item}
+              onopen_overview={handleOpenOverview}
+            ></c-my-library-book-list-item>
+          </div>
+        </template>
+      </div>
     </div>
+
+    <c-ui-empty-page
+      if:false={hasRecords}
+      title="You don't have any books in your library"
+    ></c-ui-empty-page>
+  </div>
 </template>

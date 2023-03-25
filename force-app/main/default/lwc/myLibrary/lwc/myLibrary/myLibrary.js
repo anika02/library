@@ -1,30 +1,46 @@
-import {LightningElement, track} from 'lwc';
+import {LightningElement, track, wire} from 'lwc';
 import {loadStyle} from "lightning/platformResourceLoader";
 
 import styles from "@salesforce/resourceUrl/lib";
 
-import { defaultRecords } from './helper';
+import getBooksByOwnerId from '@salesforce/apex/BookController.getBooksByOwnerId';
+import { helper } from './helper';
+
 
 export default class MyLibrary extends LightningElement {
-    @track bookOverviewIsOpen = false;
-    @track selectedBook = null;
+  recordId='0037Q00000fSXR6QAO';
 
-    connectedCallback() {
-        Promise.all([
-            loadStyle(this, styles + `/styles/styles.css`),
-        ]);
-    }
+  @track bookOverviewIsOpen = false;
+  @track selectedBook = null;
+  records = [];
 
-    handleOpenOverview(event) {
-        this.selectedBook = event.detail.book;
-        this.bookOverviewIsOpen = true;
-    }
 
-    handleCloseOverview() {
-        this.bookOverviewIsOpen = false;
+  @wire(getBooksByOwnerId, { ownerId: '$recordId' })
+  wireBooks({ error, data }) {
+    if (data) {
+      this.records = helper.mapData(data);
+    } else if (error) {
+      console.log(error);
     }
+  }
 
-    get records() {
-        return defaultRecords;
-    }
+
+  connectedCallback() {
+    Promise.all([
+      loadStyle(this, styles + `/styles/styles.css`),
+    ]);
+  }
+
+  handleOpenOverview(event) {
+    this.selectedBook = event.detail.book;
+    this.bookOverviewIsOpen = true;
+  }
+
+  handleCloseOverview() {
+    this.bookOverviewIsOpen = false;
+  }
+
+  get hasRecords() {
+    return this.records?.length > 0;
+  }
 }
