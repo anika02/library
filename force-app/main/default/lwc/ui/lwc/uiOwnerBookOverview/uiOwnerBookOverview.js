@@ -1,23 +1,34 @@
-import {api, LightningElement} from 'lwc';
+import {LightningElement, api, track, wire} from 'lwc';
+
+import getUserInfoById from '@salesforce/apex/UserController.getUserInfoById';
 
 export default class UiOwnerBookOverview extends LightningElement {
-  @api record;
   @api isOpen;
+  @api ownerId;
+  @api record;
 
-  contactFields = ['phone', 'email', 'telegram', 'viber', 'instagram'];
+  @track owner = null;
+  @track _contacts;
 
-  get contacts() {
-    let contacts = [];
-    for (const [key, value] of Object.entries(this.record)) {
-      if (this.contactFields.includes(key)) {
-        contacts.push({key: key, value: value});
-      }
+  @wire(getUserInfoById, { userId: '$ownerId' })
+  wireContact({ error, data }) {
+    if (data) {
+      this.owner = data;
+    } else if (error) {
+      console.log(error);
     }
-    return contacts;
   }
 
-  get hasStatus() {
-    return !!this.record.status;
+  get ownerName() {
+    return this.owner?.name;
+  }
+
+  get address() {
+    return this.owner ? `${this.owner.city}, ${this.owner.country}` : '';
+  }
+
+  get contacts() {
+    return this.owner?.contacts ? this.owner.contacts : [];
   }
 
   handleOverlayClick(event) {

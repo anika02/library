@@ -13,7 +13,7 @@
         </div>
 
         <div class="ui-body-1 mb-2">
-          {record.address}
+          {address}
         </div>
         <div class="slds-grid slds-grid_vertical-align-start mb-2">
           <template for:each={record.categories} for:item="category">
@@ -25,10 +25,13 @@
           </template>
         </div>
         <div class="ui-body-1 mb-1">
-          {record.shortDescription}
+          {showedDescription}
         </div>
-        <div class="ui-body-1">
-          Show More
+        <div
+          class="ui-body-1 pointer"
+          onclick={handleDescription}>
+          <div if:true={descIsExpand}>Show Less</div>
+          <div if:false={descIsExpand}>Show More</div>
         </div>
       </div>
       <div class="buttons-group-width">

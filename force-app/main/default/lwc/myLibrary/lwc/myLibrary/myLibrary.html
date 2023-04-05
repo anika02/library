@@ -1,6 +1,8 @@
 <template>
   <c-ui-owner-book-overview
+    if:true={selectedBook}
     is-open={bookOverviewIsOpen}
+    owner-id={selectedBookOwnerId}
     record={selectedBook}
     onclose={handleCloseOverview}
   ></c-ui-owner-book-overview>
@@ -9,6 +11,7 @@
   <div class="bg-neutral-0 h-full">
     <c-ui-search-tools
       page-name="My Library"
+      onsearch={handleSearch}
     ></c-ui-search-tools>
 
     <div if:true={hasRecords}>

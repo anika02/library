@@ -1,6 +1,7 @@
 import {LightningElement, track, wire} from 'lwc';
 import {loadStyle} from "lightning/platformResourceLoader";
 
+import userId from '@salesforce/user/Id';
 import styles from "@salesforce/resourceUrl/lib";
 
 import getBooksByOwnerId from '@salesforce/apex/BookController.getBooksByOwnerId';
@@ -8,14 +9,17 @@ import { helper } from './helper';
 
 
 export default class MyLibrary extends LightningElement {
-  recordId='0037Q00000fSXR6QAO';
+  userId = userId;
 
   @track bookOverviewIsOpen = false;
   @track selectedBook = null;
+  @track selectedBookOwnerId = null;
+
+  @track searchTerm = '';
+
   records = [];
 
-
-  @wire(getBooksByOwnerId, { ownerId: '$recordId' })
+  @wire(getBooksByOwnerId, { ownerId: '$userId', searchTerm: '$searchTerm' })
   wireBooks({ error, data }) {
     if (data) {
       this.records = helper.mapData(data);
@@ -24,15 +28,19 @@ export default class MyLibrary extends LightningElement {
     }
   }
 
-
   connectedCallback() {
     Promise.all([
       loadStyle(this, styles + `/styles/styles.css`),
     ]);
   }
 
+  get hasRecords() {
+    return this.records?.length > 0;
+  }
+
   handleOpenOverview(event) {
     this.selectedBook = event.detail.book;
+    this.selectedBookOwnerId = event.detail.book.OwnerId;
     this.bookOverviewIsOpen = true;
   }
 
@@ -40,7 +48,7 @@ export default class MyLibrary extends LightningElement {
     this.bookOverviewIsOpen = false;
   }
 
-  get hasRecords() {
-    return this.records?.length > 0;
+  handleSearch(event) {
+    this.searchTerm = event.detail.value;
   }
 }

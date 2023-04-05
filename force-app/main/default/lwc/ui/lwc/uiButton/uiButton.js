@@ -23,24 +23,15 @@ export default class UiButton extends LightningElement {
 
   defaultBodyClasses = [ 'slds-grid_align-center ui-rounded ui-button w-full' ];
 
-  /**
-   * @param {boolean} value
-   */
   @api set disabled(value) {
     this._disabled = value;
     this.setAttribute('disabled', value);
   }
 
-  /**
-   * @return {boolean}
-   */
   get disabled() {
     return this._disabled;
   }
 
-  /**
-   * @param {string} value
-   */
   @api set variant(value) {
     if (!variants.has(value)) {
       throw Error(`Incorrect variant option '${value}'`);
@@ -49,16 +40,10 @@ export default class UiButton extends LightningElement {
     this._variant = value;
   }
 
-  /**
-   * @return {string}
-   */
   get variant() {
     return this._variant;
   }
 
-  /**
-   * @param {string} value
-   */
   @api set size(value) {
     if (!sizes.has(value)) {
       throw Error(`Incorrect size option '${value}'`);
@@ -67,37 +52,22 @@ export default class UiButton extends LightningElement {
     this._size = value;
   }
 
-  /**
-   * @return {string}
-   */
   get size() {
     return this._size;
   }
 
-  /**
-   * @param {string} value
-   */
   @api set iconClassName(value) {
     this._iconClassName = value;
   }
 
-  /**
-   * @return {string}
-   */
   get iconClassName() {
     return this._iconClassName || (mapIconClassesToSizes[this.size]);
   }
 
-  /**
-   * @param {string} value
-   */
   @api set textClassName(value) {
     this._textClassName = value;
   }
 
-  /**
-   * @return {string}
-   */
   get textClassName() {
     return this._textClassName || (mapTextClassesToSizes[this.size]);
   }

@@ -5,21 +5,21 @@
         <div class="slds-grid py-10">
           <div class="photo">{record.photo}</div>
           <div class="slds-grid slds-grid_align-spread w-full ml-6">
-            <div>
+            <div class="w-full">
               <div class="mb-1 ui-title-1">
                 {record.Name} - {record.Author__c}
               </div>
               <div class="slds-grid slds-wrap ui-body-1_height">
                 <div class="slds-col slds-size_1-of-2">Owner:</div>
-                <div class="slds-col slds-size_1-of-2">{record.Owner__r.Name}</div>
+                <div class="slds-col slds-size_1-of-2">{ownerName}</div>
                 <div class="slds-col slds-size_1-of-2">Address:</div>
-                <div class="slds-col slds-size_1-of-2">{record.address}</div>
+                <div class="slds-col slds-size_1-of-2">{address}</div>
               </div>
               <div class="ui-body-1_height">Contacts:</div>
               <div class="ui-body-1_height">
                 <template for:each={contacts} for:item="item">
                   <div key={item.Id} class="slds-grid slds-wrap">
-                    <div class="slds-col slds-size_1-of-2">{item.key}</div>
+                    <div class="slds-col slds-size_1-of-2">{item.label}</div>
                     <div class="slds-col slds-size_1-of-2">{item.value}</div>
                   </div>
                 </template>
@@ -27,10 +27,6 @@
             </div>
             <div class="buttons-group-width">
               <div class="slds-grid slds-grid_align-center w-full">
-                <c-ui-button
-                  icon-name="chat"
-                  variant="link"
-                ></c-ui-button>
                 <c-ui-button
                   icon-name="history"
                   variant="link"
@@ -44,12 +40,6 @@
                   variant="link"
                 ></c-ui-button>
               </div>
-              <c-ui-button
-                if:true={hasStatus}
-                class="w-full"
-                value="change status"
-                variant="secondary"
-              ></c-ui-button>
             </div>
           </div>
         </div>

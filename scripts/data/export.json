@@ -1,0 +1,6 @@
+{
+  "objects": [{
+    "query": "SELECT Id, Name, Author__c, Category__c, Reservation_Limit__c, Disabled__c, Description__c FROM Book__c",
+    "operation": "Upsert"
+  }]
+}
