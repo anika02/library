@@ -1,4 +1,4 @@
-import {LightningElement, api, track, wire} from 'lwc';
+import {LightningElement, api, wire} from 'lwc';
 
 import getAllCategories from '@salesforce/apex/BookController.getAllCategories';
 
