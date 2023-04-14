@@ -1,0 +1,33 @@
+<template>
+  <c-ui-book-list-item
+    record={record}
+    onopen_overview={handleOpenOverview}
+  >
+
+    <slot slot="actions">
+      <c-ui-button
+        icon-name="chat"
+        variant="link"
+      ></c-ui-button>
+      <c-ui-button
+        icon-name={favouriteIcon}
+        variant="link"
+        onclick={handleFavourite}
+      ></c-ui-button>
+      <c-ui-button
+        icon-name={wishListIcon}
+        variant="link"
+        onclick={handleWishList}
+      ></c-ui-button>
+    </slot>
+
+    <slot slot="bottom-actions">
+      <c-ui-button
+        class="w-full"
+        value="reserve"
+        variant="secondary"
+      ></c-ui-button>
+    </slot>
+
+  </c-ui-book-list-item>
+</template>

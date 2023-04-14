@@ -1,25 +1,22 @@
 <template>
-  <div class="slds-grid slds-grid_vertical-align-center p-6">
-    <c-ui-input-search
-      class="w-full"
-      onsearch={handleSearch}
-    ></c-ui-input-search>
+  <slot name="modals"></slot>
 
-    <c-ui-button
-      class="ml-6"
-      icon-name="filter-list"
-      value="filters"
-      variant="secondary"
-    ></c-ui-button>
-    <c-ui-button
-      class="ml-6"
-      icon-name="view-list"
-      value="view"
-      variant="secondary"
-    ></c-ui-button>
+  <div class="p-6">
+    <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+      <div class="slds-grid w-full">
+        <c-ui-input-search
+          class="w-50p"
+          onsearch={handleSearch}
+        ></c-ui-input-search>
 
-    <div class="slds-grid slds-grid_align-end ml-12 ui-title-1 w-60">
-      {pageName}
+        <slot name="actions"></slot>
+      </div>
+
+      <div class="slds-col ml-2 ui-title-1 full-width-content">
+        {pageName}
+      </div>
     </div>
+
+    <slot name="selected"></slot>
   </div>
 </template>

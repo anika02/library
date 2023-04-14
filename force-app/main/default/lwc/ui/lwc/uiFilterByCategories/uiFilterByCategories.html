@@ -1,0 +1,21 @@
+<template>
+  <c-ui-modal
+    is-open={isOpen}
+    title="Filter Categories"
+    onmodal_close={handleModalClose}
+    onmodal_ok={handleModalOk}>
+
+    <div class="my-6 mx-6">
+      <lightning-dual-listbox
+        disable-reordering
+        label="Select the categories"
+        options={categories}
+        selected-label="Selected"
+        source-label="Available"
+        value={selected}
+        onchange={handleChange}
+      ></lightning-dual-listbox>
+    </div>
+
+  </c-ui-modal>
+</template>

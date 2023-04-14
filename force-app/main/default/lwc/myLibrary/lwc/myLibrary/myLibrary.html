@@ -1,18 +1,37 @@
 <template>
+  <lightning-spinner class="slds-is-fixed z-110" if:true={isLoading}></lightning-spinner>
   <c-ui-owner-book-overview
-    if:true={selectedBook}
-    is-open={bookOverviewIsOpen}
-    owner-id={selectedBookOwnerId}
-    record={selectedBook}
+    if:true={overviewIsOpen}
+    is-open={overviewIsOpen}
+    record={overviewRecord}
     onclose={handleCloseOverview}
+    onopen_edition={handleOpenEditionForm}
+    onopen_deletion={handleOpenDeletionForm}
   ></c-ui-owner-book-overview>
 
+  <c-ui-book-edition-modal
+    if:true={editionIsOpen}
+    is-edition-form={isEditionForm}
+    is-open={editionIsOpen}
+    record={editedRecord}
+    onmodal_close={handleCloseEditionForm}
+    onmodal_ok={handleOkEditionForm}
+  ></c-ui-book-edition-modal>
+
+  <c-ui-book-deletion-form
+    is-open={deletionIsOpen}
+    record={deletedRecord}
+    onmodal_close={handleCloseDeletionForm}
+    onmodal_ok={handleOkDeletionForm}
+  ></c-ui-book-deletion-form>
 
   <div class="bg-neutral-0 h-full">
-    <c-ui-search-tools
+    <c-my-library-search-tools
       page-name="My Library"
       onsearch={handleSearch}
-    ></c-ui-search-tools>
+      onfilter={handleFilter}
+      onopen_creation={handleOpenCreationForm}
+    ></c-my-library-search-tools>
 
     <div if:true={hasRecords}>
       <div class="ui-scrollbar h-full">
@@ -21,6 +40,8 @@
             <c-my-library-book-list-item
               record={item}
               onopen_overview={handleOpenOverview}
+              onopen_edition={handleOpenEditionForm}
+              onopen_deletion={handleOpenDeletionForm}
             ></c-my-library-book-list-item>
           </div>
         </template>

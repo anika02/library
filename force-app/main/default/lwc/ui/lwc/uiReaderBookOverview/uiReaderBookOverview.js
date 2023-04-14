@@ -1,29 +1,34 @@
-import {api, LightningElement} from 'lwc';
+import { LightningElement, api } from 'lwc';
 
 export default class UiReaderBookOverview extends LightningElement {
-    @api record;
     @api isOpen;
+    @api record;
 
-    contactFields = ['phone', 'email', 'telegram', 'viber', 'instagram'];
-
-    get contacts() {
-        let contacts = [];
-        for (const [key, value] of Object.entries(this.record)) {
-            console.log(key, value, this.contactFields.includes(key));
-            if (this.contactFields.includes(key)) {
-                console.log(key, value);
-                console.log(JSON.stringify({key: key, value: value}));
-                contacts.push({key: key, value: value});
-                console.log(JSON.stringify(contacts));
-            }
-        }
-        console.log(contacts);
-        return contacts;
+    get favouriteIcon() {
+        return this.record.Favourites__r ? 'favourite-black' : 'favourite';
     }
 
-    handleOverlayClick(event) {
-        if (event.target.dataset.id === 'backdrop') {
-            this.dispatchEvent(new CustomEvent('close'));
-        }
+    get wishListIcon() {
+        return this.record.Wish_Lists__r ? 'bookmark-black' : 'bookmark';
+    }
+
+    handleOverlayClick() {
+        this.dispatchEvent(new CustomEvent('close'));
+    }
+
+    handleFavourite() {
+        this.dispatchEvent(new CustomEvent('favourite', {
+            detail: {
+                record: this.record
+            }
+        }));
+    }
+
+    handleWishList() {
+        this.dispatchEvent(new CustomEvent('wish_list', {
+            detail: {
+                record: this.record
+            }
+        }));
     }
 }

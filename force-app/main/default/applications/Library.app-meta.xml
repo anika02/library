@@ -13,11 +13,11 @@
     <label>Library</label>
     <navType>Standard</navType>
     <tabs>standard-AnalyticsDataManager</tabs>
-    <tabs>Search</tabs>
     <tabs>My_Library</tabs>
+    <tabs>Search</tabs>
     <tabs>My_History</tabs>
-    <tabs>standard-Contact</tabs>
-    <tabs>standard-Image</tabs>
+    <tabs>Wish_List</tabs>
+    <tabs>Book_Requests</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Library_UtilityBar</utilityBar>
 </CustomApplication>

@@ -15,32 +15,21 @@ export default class UiInputSearch extends LightningElement {
     return this._value;
   }
 
-  get valueIsEmpty() {
-    return !this._value;
-  }
-
   get searchQueryElm() {
-    return this.template.querySelector('.search-query');
+    return this.template.querySelector('input');
   }
 
-  handleKeyDown(event) {
-    if (this.isEnterKey(event.keyCode)) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+  handleChange(event) {
+    this.value = event.target.value;
+
+    this.value = this.clearValue(this.value);
+    this.searchQueryElm.innerHTML = this.value;
+
   }
 
   handleKeyUp(event) {
-    this.value = event.target.innerText;
-
     if (this.isEnterKey(event.keyCode)) {
-      event.target.blur();
-      this.value = this.clearValue(this.value);
-      this.searchQueryElm.innerHTML = this.value;
-
-      if (this.isEnterKey(event.keyCode)) {
-        this.sendSearchEvent();
-      }
+      this.sendSearchEvent();
     }
   }
 

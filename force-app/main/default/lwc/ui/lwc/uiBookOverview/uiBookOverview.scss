@@ -1,0 +1,35 @@
+.calendar {
+  height: 272px;
+  min-width: 354px;
+  color: #697079;
+  background-color: #e6e6e9;
+}
+
+.overlay {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.3);
+
+  &[data-is-open="false"] {
+    visibility: hidden;
+    height: 0;
+  }
+  .content {
+    height: 100vh;
+    width: 75vw;
+    position: fixed;
+    top:0;
+    right: -75vw;
+    transition: all .5s;
+
+    &[data-is-open="true"] {
+      right: 0;
+    }
+
+    .body {
+      overflow: hidden;
+    }
+  }
+}

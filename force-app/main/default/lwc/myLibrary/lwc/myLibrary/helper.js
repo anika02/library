@@ -3,7 +3,6 @@ export const helper = {
     return data.map(item => {
       return {
         categories: item.Category__c.split(';'),
-        photo: 'photo',
         ...item
       };
     })

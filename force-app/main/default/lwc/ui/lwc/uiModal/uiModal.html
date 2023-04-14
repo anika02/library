@@ -1,0 +1,54 @@
+<template>
+  <div class={showClass}>
+    <div class="modal-container">
+      <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+
+          <header if:true={showTitle} class={headerClasses}>
+            <div class="slds-col slds-grow-none pr-4 header-icon" if:true={titleIcon}>
+              <c-ui-svg class-name="h-5 w-5" icon={titleIcon}></c-ui-svg>
+            </div>
+            <div class="slds-col">
+              <div>
+                {title}
+              </div>
+              <div class="slds-modal__header-subtitle" if:true={subtitle}>
+                {subtitle}
+              </div>
+            </div>
+          </header>
+
+          <div class="slds-modal__content">
+            <div class="h-full ui-scrollbar">
+              <slot></slot>
+            </div>
+          </div>
+
+          <div class="slds-grid py-4 px-6 slds-modal__footer slds-grid_align-spread" if:true={hasActions}>
+            <c-ui-button
+              if:false={buttonCancelHide}
+              disabled={buttonCancelDisabled}
+              variant="secondary"
+              class="slds-col button-cancel"
+              value={buttonCancelValue}
+              onclick={handleClose}
+            ></c-ui-button>
+
+            <div class="slds-col"></div>
+
+            <c-ui-button
+              if:false={buttonDoneHide}
+              disabled={buttonDoneDisabled}
+              variant="primary"
+              class="slds-col"
+              value={buttonDoneValue}
+              onclick={handleOk}
+            ></c-ui-button>
+          </div>
+        </div>
+
+      </section>
+    </div>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+  </div>
+</template>

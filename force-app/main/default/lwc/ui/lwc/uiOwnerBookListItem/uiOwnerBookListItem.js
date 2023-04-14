@@ -7,7 +7,7 @@ export default class UiOwnerBookListItem extends LightningElement {
   handleOpenOverview() {
     this.dispatchEvent(new CustomEvent('open_overview', {
       detail: {
-        book: this.record,
+        record: this.record,
       },
     }));
   }
