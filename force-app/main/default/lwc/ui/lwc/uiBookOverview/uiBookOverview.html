@@ -1,0 +1,103 @@
+<template>
+  <div class="h-screen w-screen overlay" data-is-open={isOpen} onclick={handleOverlayClick} data-id="backdrop">
+    <div class="slds-grid slds-grid_vertical slds-grid_grow__direct slds-scrollable px-10 bg-neutral-0 content" data-is-open={isOpen}>
+      <div if:true={isOpen}>
+        <div class="slds-grid py-10">
+          <img class="w-50 h-60" src={record.Photo_URL__c} alt="Image"/>
+          <div class="slds-grid slds-grid_align-spread w-full ml-6">
+            <div class="w-full">
+              <div class="mb-1 ui-title-1">
+                {record.Name} - {record.Author__c}
+              </div>
+              <div class="slds-grid slds-wrap ui-body-1_height">
+                <div class="slds-col slds-size_1-of-2">Owner:</div>
+                <div class="slds-col slds-size_1-of-2">{ownerName}</div>
+                <div class="slds-col slds-size_1-of-2">Address:</div>
+                <div class="slds-col slds-size_1-of-2">{address}</div>
+              </div>
+              <div class="ui-body-1_height">Contacts:</div>
+              <div class="ui-body-1_height">
+                <template for:each={contacts} for:item="item">
+                  <div key={item.Id} class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-2">{item.label}</div>
+                    <div class="slds-col slds-size_1-of-2">{item.value}</div>
+                  </div>
+                </template>
+              </div>
+            </div>
+            <div class="buttons-group-width">
+              <div class="slds-grid slds-grid_align-center w-full">
+                <slot name="actions"></slot>
+              </div>
+              <slot name="bottom-actions"></slot>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="slds-grid slds-grid_align-spread py-10 ui-border-top ui-border-neutral-500">
+          <div>
+            <div class="mb-2 ui-title-2">
+              Categories
+            </div>
+            <div class="slds-grid slds-wrap">
+              <template for:each={record.categories} for:item="category">
+                <c-ui-tag
+                  key={category.Id}
+                  class="m-1"
+                  value={category}
+                  variant="secondary"
+                ></c-ui-tag>
+              </template>
+            </div>
+
+            <div class="mt-4 mb-2 ui-title-2">
+              Description
+            </div>
+
+            <div class="ui-body-1_height">
+              {record.Description__c}
+            </div>
+          </div>
+          <div class="ml-4 calendar">{record.photo}</div>
+        </div>
+
+        <div class="py-10 ui-border-top ui-border-neutral-500">
+          <div>
+            <div class="mb-2 ui-title-2">
+              Comments
+            </div>
+
+            <div class="ui-body-1_height pl-10 pt-4">
+              <div>
+                Superman (17 Jul 2021)
+              </div>
+              <div class="pl-10">
+                {record.Description__c}
+              </div>
+            </div>
+
+            <div class="ui-body-1_height pl-10 pt-4">
+              <div>
+                Superman (17 Jul 2021)
+              </div>
+              <div class="pl-10">
+                {record.Description__c}
+              </div>
+            </div>
+
+            <div class="ui-body-1_height pl-10 pt-4">
+              <div>
+                Superman (17 Jul 2021)
+              </div>
+              <div class="pl-10">
+                {record.Description__c}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,28 @@
+.slds-modal__header {
+  background: var(--color-primary-500);
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border: 0;
+  padding: 20px 24px;
+  color: var(--color-neutral-0);
+  font-size: 18px;
+  text-align: left;
+  align-items: center;
+}
+.slds-modal__header-subtitle {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.slds-modal__footer {
+  border-top: 1px solid var(--color-secondary-100);
+  background-color: var(--color-neutral-0);
+}
+
+.button-close {
+  --ui-button-link-color:var(--color-neutral-0);
+}
+.button-cancel {
+  --ui-button-secondary-border-color:var(--color-neutral-500);
+  --ui-button-secondary-color:var(--color-neutral-500);
+}

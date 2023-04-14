@@ -1,28 +1,26 @@
-import {api, LightningElement} from 'lwc';
+import { LightningElement, api } from 'lwc';
 
 export default class UiOwnerBookOverview extends LightningElement {
-    @api record;
-    @api isOpen;
+  @api isOpen;
+  @api record;
 
-    contactFields = ['phone', 'email', 'telegram', 'viber', 'instagram'];
+  handleOverlayClick() {
+    this.dispatchEvent(new CustomEvent('close'));
+  }
 
-    get contacts() {
-        let contacts = [];
-        for (const [key, value] of Object.entries(this.record)) {
-            if (this.contactFields.includes(key)) {
-                contacts.push({key: key, value: value});
-            }
-        }
-        return contacts;
-    }
+  handleOpenEditionForm() {
+    this.dispatchEvent(new CustomEvent('open_edition', {
+      detail: {
+        record: this.record,
+      },
+    }));
+  }
 
-    get hasStatus() {
-        return !!this.record.status;
-    }
-
-    handleOverlayClick(event) {
-        if (event.target.dataset.id === 'backdrop') {
-            this.dispatchEvent(new CustomEvent('close'));
-        }
-    }
+  handleOpenDeletionForm() {
+    this.dispatchEvent(new CustomEvent('open_deletion', {
+      detail: {
+        record: this.record,
+      },
+    }));
+  }
 }

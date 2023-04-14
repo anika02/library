@@ -1,0 +1,30 @@
+.ui-tag {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+}
+.ui-tag_primary {
+  background-color: var(--ui-tag-primary-background);
+  border: 1px solid var(--ui-tag-primary-background);
+  color: var(--ui-tag-primary-color);
+}
+.ui-tag_primary .icon {
+  color: var(--ui-tag-primary-icon-color);
+}
+.ui-tag_secondary {
+  background-color: var(--ui-tag-secondary-background);
+  border: 1px solid var(--ui-tag-secondary-border-color);
+  color: var(--ui-tag-secondary-color);
+}
+.ui-tag_secondary .icon {
+  color: var(--ui-tag-secondary-icon-color);
+}
+
+.icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: 0.2s background-color, 0.2s opacity, 0.2s border-color;
+}

@@ -1,0 +1,19 @@
+<template>
+  <div class="slds-grid slds-grid_align-spread w-full px-6 py-2 ui-border ui-rounded-8 ui-border-secondary-500">
+
+    <label class="w-full h-full search-query">
+      <input
+        class="ui-body-1 text-secondary-500"
+        type="text"
+        placeholder={placeholder}
+        onchange={handleChange}
+        onkeyup={handleKeyUp}
+        >
+    </label>
+
+    <c-ui-svg
+      class="text-secondary-500"
+      icon="search"
+    ></c-ui-svg>
+  </div>
+</template>

@@ -1,0 +1,1 @@
+sfdx sfdmu:run --sourceusername csvfile --targetusername anika.korabliova@mindful-goat-k6cc1y.com --path ./data

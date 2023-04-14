@@ -1,0 +1,12 @@
+<template>
+  <div class={bodyClasses}>
+    <div>{value}</div>
+    <span if:true={isDeletable} class="icon ml-2">
+      <c-ui-svg
+        class-name="h-2 w-2"
+        icon="close"
+        onclick={handleClose}
+      ></c-ui-svg>
+    </span>
+  </div>
+</template>

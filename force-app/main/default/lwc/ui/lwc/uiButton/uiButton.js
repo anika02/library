@@ -1,118 +1,88 @@
 import { LightningElement, api, track } from "lwc";
 
 import {
-    sizes,
-    variants,
-    mapSizeToClasses,
-    mapTextClassesToSizes,
-    mapIconClassesToSizes,
+  sizes,
+  variants,
+  mapSizeToClasses,
+  mapTextClassesToSizes,
+  mapIconClassesToSizes,
 } from './helper';
 
 export default class UiButton extends LightningElement {
 
-    @api value;
-    @api iconName;
+  @api value;
+  @api iconName;
 
-    @track _disabled = false;
+  @track _disabled = false;
 
-    _variant = 'primary';
-    _size = 'medium';
+  _variant = 'primary';
+  _size = 'medium';
 
-    _iconClassName;
-    _textClassName;
+  _iconClassName;
+  _textClassName;
 
-    defaultBodyClasses = [ 'slds-grid_align-center ui-rounded ui-button w-full' ];
+  defaultBodyClasses = [ 'slds-grid_align-center ui-rounded ui-button w-full' ];
 
-    /**
-     * @param {boolean} value
-     */
-    @api set disabled(value) {
-        this._disabled = value;
-        this.setAttribute('disabled', value);
+  @api set disabled(value) {
+    this._disabled = value;
+    this.setAttribute('disabled', value);
+  }
+
+  get disabled() {
+    return this._disabled;
+  }
+
+  @api set variant(value) {
+    if (!variants.has(value)) {
+      throw Error(`Incorrect variant option '${value}'`);
     }
 
-    /**
-     * @return {boolean}
-     */
-    get disabled() {
-        return this._disabled;
+    this._variant = value;
+  }
+
+  get variant() {
+    return this._variant;
+  }
+
+  @api set size(value) {
+    if (!sizes.has(value)) {
+      throw Error(`Incorrect size option '${value}'`);
     }
 
-    /**
-     * @param {string} value
-     */
-    @api set variant(value) {
-        if (!variants.has(value)) {
-            throw Error(`Incorrect variant option '${value}'`);
-        }
+    this._size = value;
+  }
 
-        this._variant = value;
-    }
+  get size() {
+    return this._size;
+  }
 
-    /**
-     * @return {string}
-     */
-    get variant() {
-        return this._variant;
-    }
+  @api set iconClassName(value) {
+    this._iconClassName = value;
+  }
 
-    /**
-     * @param {string} value
-     */
-    @api set size(value) {
-        if (!sizes.has(value)) {
-            throw Error(`Incorrect size option '${value}'`);
-        }
+  get iconClassName() {
+    return this._iconClassName || (mapIconClassesToSizes[this.size]);
+  }
 
-        this._size = value;
-    }
+  @api set textClassName(value) {
+    this._textClassName = value;
+  }
 
-    /**
-     * @return {string}
-     */
-    get size() {
-        return this._size;
-    }
+  get textClassName() {
+    return this._textClassName || (mapTextClassesToSizes[this.size]);
+  }
 
-    /**
-     * @param {string} value
-     */
-    @api set iconClassName(value) {
-        this._iconClassName = value;
-    }
+  get bodyClasses() {
 
-    /**
-     * @return {string}
-     */
-    get iconClassName() {
-        return this._iconClassName || (mapIconClassesToSizes[this.size]);
-    }
+    const classes = [
+      ...this.defaultBodyClasses,
+      this.textClassName,
+      `ui-button_${this.variant}`,
+      `ui-button_${this.size}`,
+      mapSizeToClasses[this.size],
+      this.value ? '' : 'only-icon',
+    ];
 
-    /**
-     * @param {string} value
-     */
-    @api set textClassName(value) {
-        this._textClassName = value;
-    }
-
-    /**
-     * @return {string}
-     */
-    get textClassName() {
-        return this._textClassName || (mapTextClassesToSizes[this.size]);
-    }
-
-    get bodyClasses() {
-
-        const classes = [
-            ...this.defaultBodyClasses,
-            this.textClassName,
-            `ui-button_${this.variant}`,
-            `ui-button_${this.size}`,
-            mapSizeToClasses[this.size],
-            this.value ? '' : 'only-icon',
-        ];
-
-        return classes.join(' ');
-    }
+    return classes.join(' ');
+  }
 }

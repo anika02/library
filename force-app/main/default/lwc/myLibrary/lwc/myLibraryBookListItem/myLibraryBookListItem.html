@@ -1,0 +1,25 @@
+<template>
+  <c-ui-book-list-item
+    record={record}
+    onopen_overview={handleOpenOverview}
+  >
+
+    <slot slot="actions">
+      <c-ui-button
+        icon-name="history"
+        variant="link"
+      ></c-ui-button>
+      <c-ui-button
+        icon-name="edit"
+        variant="link"
+        onclick={handleOpenEditionForm}
+      ></c-ui-button>
+      <c-ui-button
+        icon-name="delete"
+        variant="link"
+        onclick={handleOpenDeletionForm}
+      ></c-ui-button>
+    </slot>
+
+  </c-ui-book-list-item>
+</template>

@@ -6,7 +6,7 @@
     <referenceTo>Book__c</referenceTo>
     <relationshipLabel>Wish Lists</relationshipLabel>
     <relationshipName>Wish_Lists</relationshipName>
-    <relationshipOrder>1</relationshipOrder>
+    <relationshipOrder>0</relationshipOrder>
     <reparentableMasterDetail>false</reparentableMasterDetail>
     <trackTrending>false</trackTrending>
     <type>MasterDetail</type>

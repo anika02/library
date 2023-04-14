@@ -15,7 +15,7 @@ export default class MyHistory extends LightningElement {
     }
 
     handleOpenOverview(event) {
-        this.selectedBook = event.detail.book;
+        this.selectedBook = event.detail.record;
         this.bookOverviewIsOpen = true;
     }
 

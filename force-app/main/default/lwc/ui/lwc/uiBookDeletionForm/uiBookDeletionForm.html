@@ -1,0 +1,12 @@
+<template>
+  <c-ui-modal
+    button-done-value="Confirm"
+    is-open={isOpen}
+    onmodal_close={handleModalClose}
+    onmodal_ok={handleModalOk}>
+
+    <div if:true={record} class="slds-grid slds-grid_align-center slds-grid_vertical-align-center ui-title-2 p-6">
+      Do you want to delete the book "{record.Name}" (by {record.Author__c})?
+    </div>
+  </c-ui-modal>
+</template>

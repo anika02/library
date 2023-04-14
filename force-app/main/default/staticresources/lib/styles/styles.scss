@@ -40,6 +40,21 @@
   //LINK
   --ui-button-link-color: var(--color-secondary-500);
   --ui-button-link-color-hover: var(--color-action-500);
+
+  /**
+   * Tag theme
+   */
+
+  //PRIMARY
+  --ui-tag-primary-background: var(--color-action-300);
+  --ui-tag-primary-color: var(--color-neutral-0);
+  --ui-tag-primary-icon-color: var(--color-neutral-0);
+
+  //SECONDARY
+  --ui-tag-secondary-background:var(--color-neutral-0);
+  --ui-tag-secondary-border-color:var(--color-secondary-500);
+  --ui-tag-secondary-color:var(--color-secondary-500);
+  --ui-tag-secondary-icon-color:var(--color-secondary-500);
 }
 
 .ui-title-1 {
@@ -107,6 +122,13 @@ $colors: (
         "neutral-600": #697079,
         "neutral-1000": #000000,
 
+        "error-50": #FCE8E8,
+        "error-100": #FAD1D1,
+        "error-200": #F5B8B8,
+        "error-500": #E54B4B,
+        "error-600": #EA001E,
+        "error-700": #B31919,
+
         "cyan-50": rgb(236 254 255),
         "cyan-100": rgb(207 250 254),
         "cyan-200": rgb(165 243 252),
@@ -156,6 +178,8 @@ $sizes: (
         "11": 2.75rem,//44px
         "12": 3rem,//48px
         "30": 7.5rem,//120px
+        "40": 10rem,//160px
+        "50": 12.5rem,//200px
         "60": 15rem,//240px
 
 );
@@ -388,4 +412,12 @@ $sizes: (
 .ui-scrollbar {
   overflow: hidden;
   overflow-y: auto;
+}
+
+.full-width-content {
+  min-width: fit-content;
+}
+
+.z-110 {
+  z-index: 110!important;
 }
