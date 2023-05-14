@@ -1,5 +1,10 @@
 import {LightningElement, api, track, wire } from 'lwc';
 
+import {
+  formatDate,
+  formatDateDefault
+} from 'c/utils';
+
 import getReservationDatesByBookId from '@salesforce/apex/ReservationController.getReservationDatesByBookId';
 
 export default class UiReservationModal extends LightningElement {
@@ -101,7 +106,7 @@ export default class UiReservationModal extends LightningElement {
     const startLimit = new Date();
 
     this.availableSlots = [{
-      min: this.formatDateDefault(startLimit),
+      min: formatDateDefault(startLimit),
     }];
 
     for (const reservation of data) {
@@ -117,7 +122,7 @@ export default class UiReservationModal extends LightningElement {
 
     for (const slot of this.availableSlots) {
       this.reservationSlotOptions.push({
-        label: slot.max ? `${this.formatDate(slot.min)} - ${this.formatDate(slot.max)}` : `from ${this.formatDate(slot.min)}`,
+        label: slot.max ? `${formatDate(slot.min)} - ${formatDate(slot.max)}` : `from ${formatDate(slot.min)}`,
         value: slot.min,
       });
     }
@@ -138,38 +143,12 @@ export default class UiReservationModal extends LightningElement {
   addDays(value, days) {
     let date = value instanceof Date ? value : new Date(value);
     date.setDate(date.getDate() + days);
-    return this.formatDateDefault(date);
+    return formatDateDefault(date);
   }
 
   compareDates(date1, date2) {
     date1 = date1 instanceof Date ? date1 : new Date(date1);
     date2 = date2 instanceof Date ? date2 : new Date(date2);
     return date1 > date2;
-  }
-
-  // 12 Dec 2024
-  formatDate(value) {
-    const date = value instanceof Date ? value : new Date(value);
-
-    if (isNaN(date)) {
-      return '';
-    }
-
-    return [
-      date.toLocaleString('en', { day: '2-digit' }),
-      date.toLocaleString('en', { month: 'short' }),
-      date.toLocaleString('en', { year: 'numeric' }),
-    ].join(' ');
-  }
-
-  // 2024-12-12
-  formatDateDefault(value) {
-    const date = value instanceof Date ? value : new Date(value);
-
-    return [
-      date.toLocaleString('en', { year: 'numeric' }),
-      date.toLocaleString('en', { month: '2-digit' }),
-      date.toLocaleString('en', { day: '2-digit' }),
-    ].join('-');
   }
 }

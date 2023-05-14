@@ -6,12 +6,6 @@ public with sharing class BookController {
 
     @AuraEnabled(Cacheable = true)
     public static List<Book__c> getOtherUserBooks(Id ownerId, String searchTerm, Map<String, List<String>> filteredItems) {
-//        List<ReaderBook> readerBooks = new List<ReaderBook>();
-//        for (Book__c book : BookSelector.selector.getOtherUserBooks(ownerId, searchTerm, filteredItems)) {
-//            System.debug(new ReaderBook(book));
-//            readerBooks.add(new ReaderBook(book));
-//        }
-
         return BookSelector.selector.getOtherUserBooks(ownerId, searchTerm, filteredItems);
     }
 
@@ -68,74 +62,4 @@ public with sharing class BookController {
             BookService.deleteBook(bookId);
         }
     }
-
-//    public class ReaderBook extends Book {
-//        @AuraEnabled public List<Wish_List__c> wishLists { get; set; }
-//        @AuraEnabled public List<Favourite__c> favourites { get; set; }
-//        @AuraEnabled public Datetime availableFrom { get; set; }
-//
-//        public ReaderBook(Book__c book) {
-//            this.wishLists = book.Wish_Lists__r;
-//            this.favourites = book.Favourites__r;
-//        }
-//    }
-
-
-    public abstract class Book {
-        @AuraEnabled public String author { get; set; }
-        @AuraEnabled public String category { get; set; }
-        @AuraEnabled public String description { get; set; }
-        @AuraEnabled public Boolean disabled { get; set; }
-        @AuraEnabled public String language { get; set; }
-        @AuraEnabled public String name { get; set; }
-        @AuraEnabled public Id ownerId { get; set; }
-        @AuraEnabled public String photoId { get; set; }
-        @AuraEnabled public String photoURL { get; set; }
-        @AuraEnabled public Integer publicationYear { get; set; }
-        @AuraEnabled public String publishingHouse { get; set; }
-        @AuraEnabled public User owner;
-
-        @AuraEnabled public List<Reservation__c> reservations = new List<Reservation__c>();
-
-        public Book(Book__c book) {
-            this.author = book.Author__c;
-            this.category = book.Category__c;
-            this.description = book.Description__c;
-            this.disabled = book.Disabled__c;
-            this.language = book.Language__c;
-            this.name = book.Name;
-            this.ownerId = book.OwnerId;
-            this.photoId = book.Photo_Id__c;
-            this.photoURL = book.Photo_URL__c;
-            this.publicationYear = (Integer) book.Publication_Year__c;
-            this.publishingHouse = book.Publishing_House__c;
-            this.owner = book.Owner;
-
-            this.reservations = book.Reservations__r;
-        }
-    }
 }
-
-//this.availableFrom = Datetime.now();
-//for (Reservation__c reservation: book.Reservations__r) {
-//    if (this.availableFrom >= reservation.Start_Date__c) {
-//        this.availableFrom = reservation.End_Date__c;
-//    } else {
-//        break;
-//    }
-//}
-
-//this.availableFrom = Datetime.now();
-//for (Reservation__c reservation: book.Reservations__r) {
-//    if (this.availableFrom >= reservation.Start_Date__c) {
-//        this.availableFrom = reservation.End_Date__c;
-//    } else {
-//        break;
-//    }
-//}
-//
-//for (Reservation__c reservation: book.Reservations__r) {
-//    if (reservation.CreatedById == UserInfo.getUserId()) {
-//        this.reservations.add(reservation);
-//    }
-//}

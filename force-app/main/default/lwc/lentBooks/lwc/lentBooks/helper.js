@@ -1,4 +1,4 @@
-import { STATUS_CREATED } from 'c/utils';
+import { STATUS_CREATED, ACTIVE_STATUSES } from 'c/utils';
 
 export const helper = {
   mapData(data) {
@@ -22,7 +22,7 @@ export const helper = {
 
         if (reservation.Status__c === STATUS_CREATED) {
           createdBookReservations.push([ reservation, counter ]);
-        } else {
+        } else if (ACTIVE_STATUSES.includes(reservation.Status__c)) {
           activeBookReservations.push(reservation);
         }
 

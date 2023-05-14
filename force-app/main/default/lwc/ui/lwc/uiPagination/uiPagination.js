@@ -41,8 +41,4 @@ export default class UiPagination extends LightningElement {
             variant: 'secondary',
         },
     ];
-
-    // get pages() {
-    //     return pages;
-    // }
 }

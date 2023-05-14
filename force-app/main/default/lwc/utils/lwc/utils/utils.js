@@ -11,6 +11,8 @@ export const STATUS_FINISHED_BY_OWNER = 'finished by owner';
 export const STATUS_FINISHED_BY_READER = 'finished by reader';
 export const STATUS_FINISHED = 'finished';
 
+export const ACTIVE_STATUSES = [ STATUS_CONFIRMED, STATUS_FINISHED_BY_READER, STATUS_FINISHED_BY_OWNER ];
+
 export const STATUS_OPTIONS = [{
   label: 'Wait for confirmation',
   value: 'created',
@@ -64,7 +66,16 @@ export const formatDate = value => {
   ].join(' ');
 }
 
+// 2024-12-12
+export const formatDateDefault = value => {
+  const date = value instanceof Date ? value : new Date(value);
 
+  return [
+    date.toLocaleString('en', { year: 'numeric' }),
+    date.toLocaleString('en', { month: '2-digit' }),
+    date.toLocaleString('en', { day: '2-digit' }),
+  ].join('-');
+}
 
 //03:23
 export const formatTime = value => {
