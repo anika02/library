@@ -1,0 +1,14 @@
+.box-shadow {
+  box-shadow: 0 2px 12px rgba(94, 101, 123, 0.16), 0 4px 8px rgba(94, 101, 123, 0.12);
+}
+
+.dropdown:not(:focus-within) .options-without-selected {
+  opacity: 0;
+  overflow: hidden;
+}
+
+.dropdown:not(:focus-within) {
+  div {
+    background: var(--color-neutral-0);
+  }
+}

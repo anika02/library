@@ -1,0 +1,80 @@
+<template>
+  <c-ui-search-tools
+    page-name={pageName}
+    onsearch={handleSearch}
+  >
+    <slot slot="modals">
+      <c-ui-filter-by-categories
+        is-open={isFilterCategoriesOpen}
+        selected={selectedFilters.categories}
+        onmodal_close={handleCloseFilter}
+        onmodal_ok={handleOkFilter}
+      ></c-ui-filter-by-categories>
+      <c-ui-filter-by-reservation-status
+        is-open={isFilterReservationStatusesOpen}
+        selected={selectedFilters.reservationStatuses}
+        onmodal_close={handleCloseFilter}
+        onmodal_ok={handleOkFilter}
+      ></c-ui-filter-by-reservation-status>
+    </slot>
+
+    <slot slot="actions">
+      <c-ui-button
+        class="ml-6"
+        icon-name="filter-list"
+        value="categories"
+        variant="secondary"
+        onclick={handleOpenFilterCategories}
+      ></c-ui-button>
+      <c-ui-button
+        class="ml-6"
+        icon-name="filter-list"
+        value="crossing statuses"
+        variant="secondary"
+        onclick={handleOpenFilterReservationStatuses}
+      ></c-ui-button>
+    </slot>
+
+    <slot slot="selected">
+      <div if:true={hasSelectedFilters} class="mt-3 -mb-3">
+        <div if:true={hasSelectedCategories} class="slds-grid slds-grid_vertical-align-center selected-filters">
+          <div class="ml-3 mr-4 ui-title-2 text-secondary-500 min-width_max-content">
+            Selected categories:
+          </div>
+          <div class="slds-grid slds-wrap">
+            <template for:each={selectedFilters.categories} for:item="category">
+              <c-ui-tag
+                key={category.Id}
+                is-deletable
+                class="my-1"
+                name="categories"
+                label={category.label}
+                value={category.value}
+                onclose={handleCloseTag}
+              ></c-ui-tag>
+            </template>
+          </div>
+        </div>
+
+        <div if:true={hasSelectedReservationStatuses} class="slds-grid slds-grid_vertical-align-center selected-filters">
+          <div class="ml-3 mr-4 ui-title-2 text-secondary-500 min-width_max-content">
+            Selected statuses:
+          </div>
+          <div class="slds-grid slds-wrap">
+            <template for:each={selectedFilters.reservationStatuses} for:item="status">
+              <c-ui-tag
+                key={status.Id}
+                is-deletable
+                class="my-1"
+                name="reservationStatuses"
+                label={status.label}
+                value={status.value}
+                onclose={handleCloseTag}
+              ></c-ui-tag>
+            </template>
+          </div>
+        </div>
+      </div>
+    </slot>
+  </c-ui-search-tools>
+</template>

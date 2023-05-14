@@ -1,45 +1,59 @@
 <template>
-  <div class="slds-grid px-6 py-8 ui-border-top ui-border-neutral-500">
-    <img class="w-40 h-50" src={record.Photo_URL__c} alt="Image"/>
-    <div class="slds-grid slds-grid_align-spread w-full ml-5">
-      <div>
-        <div class="slds-grid slds-grid_vertical-align-start">
+  <div class="px-6 py-8 ui-border-top ui-border-neutral-500">
+    <slot name="header"></slot>
+    <div class="slds-grid">
+      <img class="w-40 height_fit-content" src={record.Photo_URL__c} alt="Image"/>
+      <div class="slds-grid slds-grid_align-spread w-full ml-5">
+        <div>
+          <div class="slds-grid slds-grid_vertical-align-center">
+            <div
+              class="slds-grid slds-grid_vertical pointer"
+              onclick={handleOpenOverview}
+            >
+              <div class="ui-subtitle">
+                {record.Author__c}
+              </div>
+              <div class="mb-1 ui-title-2">
+                {record.Name}
+              </div>
+            </div>
+            <c-ui-tag
+              if:true={status}
+              class="ml-4"
+              size="large"
+              value={status}
+            >
+            </c-ui-tag>
+          </div>
+
+          <div class="slds-grid slds-wrap">
+            <template for:each={record.categories} for:item="category">
+              <c-ui-tag
+                key={category.Id}
+                class="my-1"
+                value={category}
+                variant="secondary"
+              ></c-ui-tag>
+            </template>
+          </div>
+          <div class="ui-body-1 mb-2">
+            {address}
+          </div>
+          <div class="ui-body-1 mb-1">
+            {shownDescription}
+          </div>
           <div
-            class="ui-title-2 mb-1 pointer"
-            onclick={handleOpenOverview}
-          >
-            {record.Name} - {record.Author__c}
+            if:true={isLongDescription}
+            class="ui-body-1 pointer"
+            onclick={handleDescription}>
+            <div if:true={descIsExpand}>Show Less</div>
+            <div if:false={descIsExpand}>Show More</div>
           </div>
         </div>
-
-        <div class="ui-body-1 mb-2">
-          {address}
+        <div class="ml-6">
+          <slot name="actions" class="slds-grid slds-grid_align-end"></slot>
+          <slot name="bottom-actions" class="slds-grid slds-grid_align-center slds-combobox min-w-30 button-column"></slot>
         </div>
-        <div class="slds-grid slds-wrap">
-          <template for:each={record.categories} for:item="category">
-            <c-ui-tag
-              key={category.Id}
-              class="m-1"
-              value={category}
-              variant="secondary"
-            ></c-ui-tag>
-          </template>
-        </div>
-        <div class="ui-body-1 mb-1">
-          {showedDescription}
-        </div>
-        <div
-          class="ui-body-1 pointer"
-          onclick={handleDescription}>
-          <div if:true={descIsExpand}>Show Less</div>
-          <div if:false={descIsExpand}>Show More</div>
-        </div>
-      </div>
-      <div class="buttons-group-width">
-        <div class="slds-grid slds-grid_align-center w-full">
-          <slot name="actions"></slot>
-        </div>
-        <slot name="bottom-actions"></slot>
       </div>
     </div>
   </div>

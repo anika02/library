@@ -1,0 +1,53 @@
+<template>
+  <c-ui-search-tools
+    page-name={pageName}
+    onsearch={handleSearch}
+  >
+    <slot slot="modals">
+      <c-ui-filter-by-categories
+        is-open={isFilterOpen}
+        selected={selectedFilters}
+        onmodal_close={handleCloseFilter}
+        onmodal_ok={handleOkFilter}
+      ></c-ui-filter-by-categories>
+    </slot>
+
+    <slot slot="actions">
+      <c-ui-button
+        class="ml-6"
+        icon-name="filter-list"
+        value="categories"
+        variant="secondary"
+        onclick={handleFilter}
+      ></c-ui-button>
+
+      <c-ui-dropdown
+        class="ml-6"
+        options={listNameOptions}
+        value={selectedListName}
+        onchange={handleChangeListName}
+      ></c-ui-dropdown>
+    </slot>
+
+    <slot slot="selected">
+      <div if:true={hasSelectedCategories} class="slds-grid slds-grid_vertical-align-center mt-3 -mb-3">
+        <div class="ml-3 mr-4 ui-title-2 text-secondary-500 min-width_max-content">
+          Selected categories:
+        </div>
+        <div class="slds-grid slds-wrap">
+          <template for:each={selectedFilters} for:item="category">
+            <c-ui-tag
+              key={category.Id}
+              is-deletable
+              class="my-1"
+              name="categories"
+              label={category.label}
+              value={category.value}
+              onclose={handleCloseTag}
+            ></c-ui-tag>
+          </template>
+        </div>
+      </div>
+    </slot>
+  </c-ui-search-tools>
+</template>

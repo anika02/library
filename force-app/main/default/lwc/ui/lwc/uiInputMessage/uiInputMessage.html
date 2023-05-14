@@ -1,0 +1,20 @@
+<template>
+  <div class="slds-grid slds-grid_align-spread w-full px-1 p-2">
+
+    <label class="w-full h-full input-query">
+      <textarea
+        class="ui-body-1 text-secondary-500 message-input"
+        maxlength="1000"
+        placeholder={placeholder}
+        onchange={handleChange}
+        onkeyup={handleKeyUp}
+      ></textarea>
+    </label>
+
+    <c-ui-svg
+      class="text-secondary-500 pointer ml-2"
+      icon="send"
+      onclick={handleSendMessage}
+    ></c-ui-svg>
+  </div>
+</template>

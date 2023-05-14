@@ -1,0 +1,86 @@
+<template>
+  <lightning-spinner class="slds-is-fixed z-110" if:true={isLoading}></lightning-spinner>
+  <c-ui-owner-book-overview
+    if:true={overviewIsOpen}
+    is-open={overviewIsOpen}
+    record={overviewRecord}
+    onclose={handleCloseOverview}
+    onopen_book_history={handleOpenBookHistory}
+    onopen_deletion={handleOpenDeletionModal}
+    onopen_edition={handleOpenEditionModal}
+  ></c-ui-owner-book-overview>
+
+  <c-ui-messenger
+    if:true={messengerIsOpen}
+    is-open={messengerIsOpen}
+    record={messengerRecord}
+    onclose={handleCloseMessenger}
+  ></c-ui-messenger>
+
+  <c-ui-book-edition-modal
+    if:true={editionIsOpen}
+    is-edition-modal="true"
+    is-open={editionIsOpen}
+    record={editedRecord}
+    onmodal_close={handleCloseEditionModal}
+    onmodal_ok={handleOkEditionModal}
+  ></c-ui-book-edition-modal>
+
+  <c-ui-book-deletion-modal
+    is-open={deletionIsOpen}
+    record={deletedRecord}
+    onmodal_close={handleCloseDeletionModal}
+    onmodal_ok={handleOkDeletionModal}
+  ></c-ui-book-deletion-modal>
+
+  <c-ui-reservation-confirm-modal
+    if:true={reservationConfirmIsOpen}
+    is-open={reservationConfirmIsOpen}
+    record={reservationRecord}
+    status={reservationConfirmNewStatus}
+    onmodal_close={handleCloseReservationConfirmModal}
+    onmodal_ok={handleOkReservationConfirmModal}
+  ></c-ui-reservation-confirm-modal>
+
+  <c-ui-owner-reservation-finish-modal
+    if:true={reservationFinishIsOpen}
+    is-open={reservationFinishIsOpen}
+    record={reservationRecord}
+    onmodal_close={handleCloseReservationFinishModal}
+    onmodal_ok={handleOkReservationFinishModal}
+  ></c-ui-owner-reservation-finish-modal>
+
+
+  <div class="bg-neutral-0 h-full">
+    <c-lent-books-search-tools
+      page-name="Lent Books"
+      search-term={searchTerm}
+      onfilter={handleFilter}
+      onsearch={handleSearch}
+    ></c-lent-books-search-tools>
+
+    <div if:true={hasRecords}>
+      <div class="ui-scrollbar h-full">
+        <template for:each={records} for:item="item">
+          <div key={item.Id}>
+            <c-lent-book-list-item
+              record={item}
+              onchange_status={handleOpenReservationConfirmModal}
+              onfinish={handleOpenReservationFinishModal}
+              onopen_book_history={handleOpenBookHistory}
+              onopen_deletion={handleOpenDeletionModal}
+              onopen_edition={handleOpenEditionModal}
+              onopen_messenger={handleOpenMessenger}
+              onopen_overview={handleOpenOverview}
+            ></c-lent-book-list-item>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <c-ui-empty-page
+      if:true={isEmptyPage}
+      title="No books was found"
+    ></c-ui-empty-page>
+  </div>
+</template>

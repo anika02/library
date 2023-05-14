@@ -1,0 +1,40 @@
+<template>
+  <div
+    class="slds-is-relative dropdown"
+    tabindex=0
+  >
+    <div
+      class={mainButtonClass}
+      onclick={handleMainButtonClick}
+    >
+      {value}
+
+      <div
+        if:false={disabled}
+        class="slds-grid slds-grid_vertical-align-center ml-1"
+      >
+        <c-ui-svg
+          class="text-action-500"
+          class-name="h-4 w-4"
+          icon="chevron-down"
+        ></c-ui-svg>
+      </div>
+    </div>
+
+    <div
+      if:true={isShowOptions}
+      class={optionsClass}
+    >
+      <template for:each={optionsWithoutSelected} for:item=option>
+        <div
+          key={option.value}
+          class="p-2"
+          data-value={option.value}
+          onclick={handleOptionClick}
+        >
+          {option.label}
+        </div>
+      </template>
+    </div>
+  </div>
+</template>

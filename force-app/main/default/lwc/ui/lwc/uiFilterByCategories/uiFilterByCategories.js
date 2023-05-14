@@ -1,12 +1,12 @@
-import {LightningElement, api, wire} from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 
 import getAllCategories from '@salesforce/apex/BookController.getAllCategories';
 
 export default class UiFilterByCategories extends LightningElement {
+
   @api isOpen = false;
 
   categories = [];
-
   _selected = [];
 
   @wire(getAllCategories)
@@ -19,7 +19,7 @@ export default class UiFilterByCategories extends LightningElement {
   }
 
   @api set selected(values) {
-    return this._selected = values;
+    this._selected = values ? values.map(item => item.value) : [];
   }
 
   get selected() {
@@ -27,19 +27,18 @@ export default class UiFilterByCategories extends LightningElement {
   }
 
   handleChange(event) {
-    this.selected = [...event.detail.value];
+    this._selected = event.detail.value;
   }
 
   handleModalClose() {
-    this.isOpen = false;
     this.dispatchEvent(new CustomEvent('modal_close'));
   }
 
   handleModalOk() {
-    this.isOpen = false;
     this.dispatchEvent(new CustomEvent('modal_ok', {
       detail: {
-        selected: this.selected,
+        name: 'categories',
+        selected: this.categories.filter(item => this.selected.includes(item.value)),
       },
     }));
   }

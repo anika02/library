@@ -37,4 +37,17 @@ public with sharing class SecurityUtils {
 
         delete record;
     }
+
+    public static void saveDelete(List<SObject> records) {
+        if (records.isEmpty()) {
+            return;
+        }
+
+        DescribeSObjectResult describeSObjectResult = records[0].getSObjectType().getDescribe();
+        if (!describeSObjectResult.isDeletable()) {
+            throwCustomException('delete', describeSObjectResult.getName());
+        }
+
+        delete records;
+    }
 }

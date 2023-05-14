@@ -1,0 +1,71 @@
+<template>
+  <lightning-spinner class="slds-is-fixed z-110" if:true={isLoading}></lightning-spinner>
+  <c-ui-reader-book-overview
+    if:true={overviewIsOpen}
+    is-open={overviewIsOpen}
+    record={overviewRecord}
+    onclose={handleCloseOverview}
+    onfavourite={handleFavourite}
+    onopen_cancel_reservation={handleOpenCancelReservationModal}
+    onopen_edit_reservation={handleOpenReservationModal}
+    onopen_messenger={handleOpenMessenger}
+    onopen_reservation={handleOpenReservationModal}
+    onwish_list={handleWishList}
+  ></c-ui-reader-book-overview>
+
+  <c-ui-messenger
+    if:true={messengerIsOpen}
+    is-open={messengerIsOpen}
+    record={messengerRecord}
+    onclose={handleCloseMessenger}
+  ></c-ui-messenger>
+
+  <c-ui-reservation-modal
+    if:true={reservationIsOpen}
+    is-open={reservationIsOpen}
+    record={reservationRecord}
+    onmodal_close={handleCloseReservationModal}
+    onmodal_ok={handleOkReservationModal}
+  ></c-ui-reservation-modal>
+
+  <c-ui-reservation-confirm-modal
+    if:true={reservationConfirmIsOpen}
+    is-open={reservationConfirmIsOpen}
+    record={reservationRecord}
+    status={canceledStatus}
+    onmodal_close={handleCloseReservationConfirmModal}
+    onmodal_ok={handleOkReservationConfirmModal}
+  ></c-ui-reservation-confirm-modal>
+
+  <div class="bg-neutral-0 h-full">
+    <c-my-lists-search-tools
+      page-name="My Lists"
+      list-name-options={listNameOptions}
+      selected-list-name={selectedListName}
+      onchange_list={handleChangeListName}
+      onfilter={handleFilter}
+      onsearch={handleSearch}
+    ></c-my-lists-search-tools>
+
+    <div if:true={hasRecords}>
+      <div class="ui-scrollbar h-full">
+        <template for:each={records} for:item="item">
+          <div key={item.Id}>
+            <c-my-lists-book-list-item
+              record={item}
+              onfavourite={handleFavourite}
+              onopen_overview={handleOpenOverview}
+              onopen_reservation={handleOpenReservationModal}
+              onwish_list={handleWishList}
+            ></c-my-lists-book-list-item>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <c-ui-empty-page
+      if:true={isEmptyPage}
+      title="No books was found"
+    ></c-ui-empty-page>
+  </div>
+</template>

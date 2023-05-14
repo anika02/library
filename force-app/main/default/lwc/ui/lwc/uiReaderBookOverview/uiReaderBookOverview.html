@@ -1,32 +1,59 @@
 <template>
-    <c-ui-book-overview
-      is-open={isOpen}
-      record={record}
-      onclose={handleOverlayClick}
-    >
-        <slot slot="actions">
-            <c-ui-button
-              icon-name="chat"
-              variant="link"
-            ></c-ui-button>
-            <c-ui-button
-              icon-name={favouriteIcon}
-              variant="link"
-              onclick={handleFavourite}
-            ></c-ui-button>
-            <c-ui-button
-              icon-name={wishListIcon}
-              variant="link"
-              onclick={handleWishList}
-            ></c-ui-button>
-        </slot>
+  <c-ui-book-overview
+    is-open={isOpen}
+    record={record}
+    onclose={handleOverlayClick}
+  >
+    <slot slot="actions">
+      <c-ui-button
+        if:true={reservation}
+        icon-name="chat"
+        variant="link"
+        onclick={handleOpenMessenger}
+      ></c-ui-button>
+      <c-ui-button
+        icon-name={favouriteIcon}
+        variant="link"
+        onclick={handleFavourite}
+      ></c-ui-button>
+      <c-ui-button
+        icon-name={wishListIcon}
+        variant="link"
+        onclick={handleWishList}
+      ></c-ui-button>
+    </slot>
 
-        <slot slot="bottom-actions">
-            <c-ui-button
-              class="w-full"
-              value="reserve"
-              variant="secondary"
-            ></c-ui-button>
-        </slot>
-    </c-ui-book-overview>
+    <slot slot="bottom-actions">
+      <c-ui-button
+        if:false={reservation}
+        class="w-full"
+        value="reserve"
+        variant="secondary"
+        onclick={handleOpenReservationModal}
+      ></c-ui-button>
+
+      <c-ui-button
+        if:true={isStatusCreated}
+        class="w-full"
+        value="reschedule reservation"
+        variant="secondary"
+        onclick={handleOpenEditReservationModal}
+      ></c-ui-button>
+      <c-ui-button
+        if:true={isStatusCreated}
+        class="w-full"
+        value="cancel reservation"
+        variant="secondary"
+        onclick={handleOpenCancelReservationModal}
+      ></c-ui-button>
+
+      <c-ui-button
+        if:true={isFinishedAllowed}
+        class="w-full"
+        variant="secondary"
+        value="finish"
+        onclick={handleOpenReservationFinishModal}
+      ></c-ui-button>
+    </slot>
+  </c-ui-book-overview>
 </template>

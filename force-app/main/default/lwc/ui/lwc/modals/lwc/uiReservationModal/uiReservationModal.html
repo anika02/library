@@ -1,0 +1,59 @@
+<template>
+  <c-ui-modal
+    button-done-value="Request"
+    is-open={isOpen}
+    title="Reservation Form"
+    subtitle={subtitle}
+    onmodal_close={handleModalClose}
+    onmodal_ok={handleModalOk}>
+
+    <div class="my-6 mx-6">
+      <div class="slds-grid slds-grid_vertical-align-start">
+        <div class="p-2 ui-body-1">
+          Choose from available slots:
+        </div>
+
+        <c-ui-dropdown
+          if:true={dropdownIsReady}
+          class="z-110 px-2 pb-2"
+          size="medium"
+          options={reservationSlotOptions}
+          value={selectedReservationSlotValue}
+          onchange={handleReservationSlotChange}
+        ></c-ui-dropdown>
+      </div>
+
+      <div
+        if:true={dropdownIsReady}
+        class="slds-grid slds-wrap"
+      >
+        <div class="slds-col slds-size_1-of-2 px-2 pb-2 slds-scrollable_none">
+          <lightning-input
+            required
+            date-style="medium"
+            label="First Date"
+            name="Start_Date__c"
+            max={startMaxLimitValue}
+            min={selectedReservationSlot.min}
+            type="date"
+            value={reservation.Start_Date__c}
+            onchange={handleChange}
+          ></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2 px-2 pb-2 slds-scrollable_none">
+          <lightning-input
+            required
+            date-style="medium"
+            label="Last Date"
+            name="End_Date__c"
+            max={selectedReservationSlot.max}
+            min={endMinLimitValue}
+            type="date"
+            value={reservation.End_Date__c}
+            onchange={handleChange}
+          ></lightning-input>
+        </div>
+      </div>
+    </div>
+  </c-ui-modal>
+</template>

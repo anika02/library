@@ -20,11 +20,8 @@ export default class UiInputSearch extends LightningElement {
   }
 
   handleChange(event) {
-    this.value = event.target.value;
-
-    this.value = this.clearValue(this.value);
-    this.searchQueryElm.innerHTML = this.value;
-
+    this.value = this.clearValue(event.target.value);
+    this.searchQueryElm.value = this.value;
   }
 
   handleKeyUp(event) {

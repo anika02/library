@@ -1,0 +1,79 @@
+<template>
+  <lightning-spinner class="slds-is-fixed z-110" if:true={isLoading}></lightning-spinner>
+  <c-ui-reader-book-overview
+    if:true={overviewIsOpen}
+    is-open={overviewIsOpen}
+    record={overviewRecord}
+    onclose={handleCloseOverview}
+    onfavourite={handleFavourite}
+    onfinish={handleOpenReservationFinishModal}
+    onopen_cancel_reservation={handleOpenCancelReservationModal}
+    onopen_edit_reservation={handleOpenReservationModal}
+    onopen_messenger={handleOpenMessenger}
+    onwish_list={handleWishList}
+  ></c-ui-reader-book-overview>
+
+  <c-ui-messenger
+    if:true={messengerIsOpen}
+    is-open={messengerIsOpen}
+    record={messengerRecord}
+    onclose={handleCloseMessenger}
+  ></c-ui-messenger>
+
+  <c-ui-reservation-modal
+    if:true={reservationIsOpen}
+    is-open={reservationIsOpen}
+    record={reservationRecord}
+    onmodal_close={handleCloseReservationModal}
+    onmodal_ok={handleOkReservationModal}
+  ></c-ui-reservation-modal>
+
+  <c-ui-reservation-confirm-modal
+    if:true={reservationConfirmIsOpen}
+    is-open={reservationConfirmIsOpen}
+    record={reservationRecord}
+    status={canceledStatus}
+    onmodal_close={handleCloseReservationConfirmModal}
+    onmodal_ok={handleOkReservationConfirmModal}
+  ></c-ui-reservation-confirm-modal>
+
+  <c-ui-reader-reservation-finish-modal
+    if:true={reservationFinishIsOpen}
+    is-open={reservationFinishIsOpen}
+    record={reservationRecord}
+    onmodal_close={handleCloseReservationFinishModal}
+    onmodal_ok={handleOkReservationFinishModal}
+  ></c-ui-reader-reservation-finish-modal>
+
+  <div class="bg-neutral-0 h-full">
+    <c-borrowed-books-search-tools
+      page-name="Borrowed Books"
+      onfilter={handleFilter}
+      onsearch={handleSearch}
+    ></c-borrowed-books-search-tools>
+
+    <div if:true={hasRecords}>
+      <div class="ui-scrollbar h-full">
+        <template for:each={records} for:item="item">
+          <div key={item.Id}>
+            <c-borrowed-book-list-item
+              record={item}
+              onfavourite={handleFavourite}
+              onfinish={handleOpenReservationFinishModal}
+              onopen_cancel_reservation={handleOpenCancelReservationModal}
+              onopen_edit_reservation={handleOpenReservationModal}
+              onopen_messenger={handleOpenMessenger}
+              onopen_overview={handleOpenOverview}
+              onwish_list={handleWishList}
+            ></c-borrowed-book-list-item>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <c-ui-empty-page
+      if:true={isEmptyPage}
+      title="No books was found"
+    ></c-ui-empty-page>
+  </div>
+</template>

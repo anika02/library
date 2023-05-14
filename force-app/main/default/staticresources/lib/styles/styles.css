@@ -57,6 +57,14 @@
   line-height: 28px;
 }
 
+.ui-subtitle {
+  font-family: "IBMPlexSans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+
 .ui-body-1 {
   font-family: "IBMPlexSans";
   font-style: normal;
@@ -3587,10 +3595,38 @@
   overflow-y: auto;
 }
 
-.full-width-content {
-  min-width: fit-content;
+.min-width_max-content {
+  min-width: max-content;
+}
+
+.width_max-content {
+  width: max-content;
+}
+
+.height_fit-content {
+  height: fit-content;
+}
+
+.text-nowrap {
+  white-space: nowrap;
 }
 
 .z-110 {
   z-index: 110 !important;
+}
+
+c-ui-tag + c-ui-tag {
+  margin-left: 0.5rem;
+}
+
+.button-column c-ui-button + c-ui-button {
+  margin-top: 0.5rem;
+}
+
+.selected-filters + .selected-filters {
+  margin-top: 1rem;
+}
+
+c-ui-message + c-ui-message .ui-message-container, c-ui-message + c-ui-message-share-contacts .ui-message-container {
+  margin-top: 0.5rem;
 }

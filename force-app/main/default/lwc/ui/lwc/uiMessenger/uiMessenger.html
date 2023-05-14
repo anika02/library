@@ -1,0 +1,63 @@
+<template>
+  <div class="overlay" data-is-open={isOpen} data-id="backdrop">
+    <div class="slds-grid slds-grid_vertical slds-grid_grow__direct slds-scrollable px-5 pt-5 bg-neutral-0 content" data-is-open={isOpen}>
+      <div if:true={isOpen} class="slds-grid slds-grid_align-spread">
+
+        <div class="pb-2">
+          <div class="ui-subtitle">{interlocutor}</div>
+          <div class="ui-body-1">{record.Author__c}: "{record.Name}"</div>
+          <div class="ui-body-1">Crossing dates: {reservationPeriod}</div>
+        </div>
+
+        <div class="slds-col"></div>
+        <div class="slds-grid">
+          <c-ui-button
+            icon-name="share-reviews"
+            size="small"
+            variant="link"
+            onclick={handleOpenShareContactsModal}
+          ></c-ui-button>
+          <c-ui-button
+            icon-name="close"
+            size="small"
+            variant="link"
+            onclick={handleClose}
+          ></c-ui-button>
+        </div>
+      </div>
+
+      <div if:true={isOpen} class="w-full h-full p-2 ui-border bg-primary-100 ui-border-secondary-200 ui-scrollbar messages">
+        <lightning-spinner class="slds-is-fixed z-110" if:true={isLoading}></lightning-spinner>
+        <template for:each={messagesGroups} for:item="messagesGroup">
+          <div key={messagesGroup.key} class="slds-grid slds-grid_vertical-align-center slds-size_1-of-1">
+            <div class="bg-secondary-200 h-px w-full"></div>
+            <div class="ui-body-2 px-2 text-secondary-200 text-nowrap">
+              {messagesGroup.date}
+            </div>
+            <div class="bg-secondary-200 h-px w-full"></div>
+          </div>
+
+          <template for:each={messagesGroup.items} for:item="message">
+            <c-ui-message
+              key={message.key}
+              message={message}
+            ></c-ui-message>
+          </template>
+        </template>
+        <c-ui-message-share-contacts
+          if:true={shareContactsIsOpen}
+          ondata_loaded={handleShareContactsLoaded}
+          onmodal_close={handleCloseShareContacts}
+          onmodal_ok={handleOkShareContacts}
+        ></c-ui-message-share-contacts>
+      </div>
+
+      <div if:true={isOpen} class="slds-grid slds-grid_align-spread">
+        <c-ui-input-message
+          class="w-full"
+          onsend_message={handleSendMessage}
+        ></c-ui-input-message>
+      </div>
+    </div>
+  </div>
+</template>

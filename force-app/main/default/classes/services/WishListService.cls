@@ -10,6 +10,10 @@ public inherited sharing class WishListService {
         return wishList;
     }
 
+    public static void deleteRecordsByBookIds(List<Id> bookIds) {
+        SecurityUtils.saveDelete(WishListSelector.selector.getByBookIds(bookIds));
+    }
+
     public static void removeFromWishList(Id wishListId) {
         SecurityUtils.saveDelete(new Wish_List__c(Id = wishListId));
     }

@@ -1,4 +1,9 @@
 public inherited sharing class BookService {
+    public static Book__c updateBook(Book__c book) {
+        SecurityUtils.saveUpdate(book);
+        return book;
+    }
+
     public static Book__c upsertBook(String jsonString, String documentId) {
         Book__c book = (Book__c) JSON.deserialize(jsonString, Book__c.class);
 

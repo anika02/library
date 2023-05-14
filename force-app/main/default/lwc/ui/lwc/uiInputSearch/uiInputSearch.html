@@ -1,11 +1,12 @@
 <template>
   <div class="slds-grid slds-grid_align-spread w-full px-6 py-2 ui-border ui-rounded-8 ui-border-secondary-500">
 
-    <label class="w-full h-full search-query">
+    <label class="w-full h-full input-query">
       <input
         class="ui-body-1 text-secondary-500"
         type="text"
         placeholder={placeholder}
+        value={value}
         onchange={handleChange}
         onkeyup={handleKeyUp}
         >

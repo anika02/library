@@ -1,9 +1,9 @@
 <template>
   <div class={bodyClasses}>
-    <div>{value}</div>
+    <div>{labelOrValue}</div>
     <span if:true={isDeletable} class="icon ml-2">
       <c-ui-svg
-        class-name="h-2 w-2"
+        class-name={iconClassName}
         icon="close"
         onclick={handleClose}
       ></c-ui-svg>

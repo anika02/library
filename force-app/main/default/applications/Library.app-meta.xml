@@ -16,8 +16,8 @@
     <tabs>My_Library</tabs>
     <tabs>Search</tabs>
     <tabs>My_History</tabs>
-    <tabs>Wish_List</tabs>
     <tabs>Book_Requests</tabs>
+    <tabs>My_Lists</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Library_UtilityBar</utilityBar>
 </CustomApplication>

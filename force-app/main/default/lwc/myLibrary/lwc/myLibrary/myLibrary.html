@@ -5,32 +5,33 @@
     is-open={overviewIsOpen}
     record={overviewRecord}
     onclose={handleCloseOverview}
-    onopen_edition={handleOpenEditionForm}
-    onopen_deletion={handleOpenDeletionForm}
+    onopen_book_history={handleOpenBookHistory}
+    onopen_deletion={handleOpenDeletionModal}
+    onopen_edition={handleOpenEditionModal}
   ></c-ui-owner-book-overview>
 
   <c-ui-book-edition-modal
     if:true={editionIsOpen}
-    is-edition-form={isEditionForm}
+    is-edition-modal={isEditionModal}
     is-open={editionIsOpen}
     record={editedRecord}
-    onmodal_close={handleCloseEditionForm}
-    onmodal_ok={handleOkEditionForm}
+    onmodal_close={handleCloseEditionModal}
+    onmodal_ok={handleOkEditionModal}
   ></c-ui-book-edition-modal>
 
-  <c-ui-book-deletion-form
+  <c-ui-book-deletion-modal
     is-open={deletionIsOpen}
     record={deletedRecord}
-    onmodal_close={handleCloseDeletionForm}
-    onmodal_ok={handleOkDeletionForm}
-  ></c-ui-book-deletion-form>
+    onmodal_close={handleCloseDeletionModal}
+    onmodal_ok={handleOkDeletionModal}
+  ></c-ui-book-deletion-modal>
 
   <div class="bg-neutral-0 h-full">
     <c-my-library-search-tools
       page-name="My Library"
-      onsearch={handleSearch}
       onfilter={handleFilter}
-      onopen_creation={handleOpenCreationForm}
+      onopen_creation={handleOpenCreationModal}
+      onsearch={handleSearch}
     ></c-my-library-search-tools>
 
     <div if:true={hasRecords}>
@@ -39,9 +40,10 @@
           <div key={item.Id}>
             <c-my-library-book-list-item
               record={item}
+              onopen_book_history={handleOpenBookHistory}
+              onopen_deletion={handleOpenDeletionModal}
+              onopen_edition={handleOpenEditionModal}
               onopen_overview={handleOpenOverview}
-              onopen_edition={handleOpenEditionForm}
-              onopen_deletion={handleOpenDeletionForm}
             ></c-my-library-book-list-item>
           </div>
         </template>
@@ -49,7 +51,7 @@
     </div>
 
     <c-ui-empty-page
-      if:false={hasRecords}
+      if:true={isEmptyPage}
       title="You don't have any books in your library"
     ></c-ui-empty-page>
   </div>

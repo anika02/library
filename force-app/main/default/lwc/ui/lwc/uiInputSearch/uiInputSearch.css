@@ -3,7 +3,7 @@
   pointer-events: none;
 }
 
-.search-query input {
+.input-query input {
   width: 100%;
   height: 100%;
   border: 0;

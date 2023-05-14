@@ -6,13 +6,14 @@
       <div class="slds-grid w-full">
         <c-ui-input-search
           class="w-50p"
+          value={searchTerm}
           onsearch={handleSearch}
         ></c-ui-input-search>
 
         <slot name="actions"></slot>
       </div>
 
-      <div class="slds-col ml-2 ui-title-1 full-width-content">
+      <div class="slds-col ml-2 ui-title-1 min-width_max-content">
         {pageName}
       </div>
     </div>

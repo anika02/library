@@ -1,0 +1,34 @@
+<template>
+  <div class="bg-neutral-0 p-2 ui-border ui-rounded-2 ui-border-secondary-200 ui-message-container">
+    <div class="ui-body-1 slds-hyphenate">
+      <div class="ui-body-1_height">Choose contacts to share:</div>
+      <div class="ui-body-1_height ml-6">
+        <template for:each={contacts} for:item="item">
+          <lightning-input
+            key={item.Id}
+            type="checkbox"
+            label={item.labelAndValue}
+          ></lightning-input>
+        </template>
+      </div>
+    </div>
+
+    <div class="slds-grid p-2 slds-grid_align-spread">
+      <c-ui-button
+        variant="secondary"
+        class="slds-col button-cancel"
+        value="Cancel"
+        onclick={handleCancel}
+      ></c-ui-button>
+
+      <div class="slds-col"></div>
+
+      <c-ui-button
+        variant="primary"
+        class="slds-col"
+        value="Share"
+        onclick={handleShare}
+      ></c-ui-button>
+    </div>
+  </div>
+</template>

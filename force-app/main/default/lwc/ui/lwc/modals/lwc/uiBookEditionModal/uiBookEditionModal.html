@@ -1,0 +1,109 @@
+<template>
+  <c-ui-modal
+    button-done-value="Save"
+    is-open={isOpen}
+    title={title}
+    subtitle={subtitle}
+    onmodal_close={handleModalClose}
+    onmodal_ok={handleModalOk}>
+
+    <div class="my-6 mx-6">
+        <div class="slds-grid slds-wrap">
+          <div class="slds-col slds-size_1-of-2 px-2 pb-2">
+            <lightning-input
+              required
+              label="Book Name"
+              max-length="80"
+              name="Name"
+              type="text"
+              value={record.Name}
+              onchange={handleChange}
+            ></lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-2 px-2 pb-2">
+            <lightning-input
+              required
+              label="Author Name"
+              max-length="100"
+              name="Author__c"
+              type="text"
+              value={record.Author__c}
+              onchange={handleChange}
+            ></lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-2 p-2">
+            <lightning-input
+              label="Year of publication"
+              max-length="4"
+              name="Publication_Year__c"
+              step="1"
+              type="number"
+              value={record.Publication_Year__c}
+              onchange={handleChange}
+            ></lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-2 p-2">
+            <lightning-input
+              label="Publishing House"
+              max-length="80"
+              name="Publishing_House__c"
+              type="text"
+              value={record.Publishing_House__c}
+              onchange={handleChange}
+            ></lightning-input>
+          </div>
+
+          <div class="slds-col slds-size_1-of-2 p-2">
+            <lightning-input
+              label="Language"
+              max-length="80"
+              name="Language__c"
+              type="text"
+              value={record.Language__c}
+              onchange={handleChange}
+            ></lightning-input>
+          </div>
+
+          <div class="slds-col slds-size_1-of-1 p-2">
+            <lightning-textarea
+              required
+              label="Description"
+              max-length="5000"
+              name="Description__c"
+              value={record.Description__c}
+              onchange={handleChange}
+            ></lightning-textarea>
+          </div>
+
+          <div class="slds-col slds-size_1-of-1 p-2">
+            <lightning-dual-listbox
+              required
+              disable-reordering
+              label="Select the categories"
+              name="Category__c"
+              options={categories}
+              selected-label="Selected"
+              source-label="Available"
+              value={record.categories}
+              onchange={handleChangeList}
+            ></lightning-dual-listbox>
+          </div>
+        </div>
+
+      <lightning-file-upload
+        class="px-2 pt-2"
+        label="Attach Book Photo"
+        name="Photo_Id__c"
+        accept={acceptedFormats}
+        record-id={record.Id}
+        onuploadfinished={handleUploadFinished}>
+      </lightning-file-upload>
+
+      <div if:true={photoError} class="ui-body-1 text-error-600 px-2 pb-2 -mt-4">Photo is required</div>
+
+      <div if:true={photoId}>
+        <img class="w-40 height_fit-content" src={photoURL} alt="Image"/>
+      </div>
+    </div>
+  </c-ui-modal>
+</template>

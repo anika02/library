@@ -1,13 +1,14 @@
 import { LightningElement, api, track } from 'lwc';
 
 export default class MyLibrarySearchTools extends LightningElement {
+
   @api pageName;
 
   @track isFilterOpen = false;
-  @track selectedCategories = [];
+  @track selectedFilters = [];
 
   get hasSelectedCategories() {
-    return this.selectedCategories.length > 0;
+    return this.selectedFilters?.length > 0;
   }
 
   handleSearch(event) {
@@ -15,7 +16,7 @@ export default class MyLibrarySearchTools extends LightningElement {
   }
 
   handleFilter() {
-    this.selectedCategories = [ ...this.selectedCategories ];
+    this.selectedFilters = [ ...this.selectedFilters ];
     this.isFilterOpen = true;
   }
 
@@ -25,20 +26,28 @@ export default class MyLibrarySearchTools extends LightningElement {
 
   handleOkFilter(event) {
     this.isFilterOpen = false;
-    this.selectedCategories = event.detail.selected;
-    this.dispatchEvent(new CustomEvent('filter', { detail: event.detail }));
+    this.selectedFilters = event.detail.selected;
+
+    this.sendEvent();
   }
 
-  handleOpenCreationForm() {
+  handleOpenCreationModal() {
     this.dispatchEvent(new CustomEvent('open_creation'));
   }
 
   handleCloseTag(event) {
-    this.selectedCategories = this.selectedCategories.filter(item => item !== event.detail.value);
+    this.selectedFilters = this.selectedFilters.filter(item => item.value !== event.detail.value);
+
+    this.sendEvent();
+  }
+
+  sendEvent() {
     this.dispatchEvent(new CustomEvent('filter', {
       detail: {
-        selected: this.selectedCategories,
-      },
+        selected: {
+          categories: this.selectedFilters?.map(item => item.value) || [],
+        },
+      }
     }));
   }
 }

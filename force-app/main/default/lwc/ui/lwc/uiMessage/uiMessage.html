@@ -1,0 +1,10 @@
+<template>
+  <div class={messageContainerClasses}>
+    <div class="ui-body-1 slds-hyphenate">
+      <lightning-formatted-rich-text value={message.Message__c}></lightning-formatted-rich-text>
+    </div>
+    <div class={timeClasses}>
+      {time}
+    </div>
+  </div>
+</template>

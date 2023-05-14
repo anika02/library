@@ -1,0 +1,12 @@
+.ui-message-container {
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 75%;
+  border-bottom-right-radius: 0;
+  margin-left: auto;
+}
+
+.button-cancel {
+  --ui-button-secondary-border-color:var(--color-neutral-500);
+  --ui-button-secondary-color:var(--color-neutral-500);
+}

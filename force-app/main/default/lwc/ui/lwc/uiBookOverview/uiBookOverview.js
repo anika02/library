@@ -1,41 +1,45 @@
 import { LightningElement, api, track, wire } from 'lwc';
 
-import getUserInfoById from '@salesforce/apex/UserController.getUserInfoById';
+import getCommentsByBookId from '@salesforce/apex/CommentOnBookController.getCommentsByBookId';
+
+import { formatDate } from 'c/utils';
 
 export default class UiBookOverview extends LightningElement {
   @api isOpen;
 
-  @track owner;
-  @track _contacts;
+  @track comments = [];
 
   _record;
   @api set record(v) {
-    this._record = v;
+    this._record = { ...v };
   }
 
   get record() {
     return this._record;
   }
 
-  @wire(getUserInfoById, { userId: '$record.OwnerId' })
+  @wire(getCommentsByBookId, { bookId: '$record.Id' })
   wireContact({ error, data }) {
     if (data) {
-      this.owner = data;
+      this.comments = data.map(item => ({
+        ...item,
+        dateTime: formatDate(item.Time__c)
+      }));
     } else if (error) {
       console.log(error);
     }
   }
 
   get ownerName() {
-    return this.owner?.name;
+    return this.record?.Owner.Name;
   }
 
   get address() {
-    return this.owner ? `${this.owner.city}, ${this.owner.country}` : '';
+    return this.record ? `${this.record.Owner.City}, ${this.record.Owner.Country}` : '';
   }
 
-  get contacts() {
-    return this.owner ? this.owner.contacts : [];
+  get hasComments() {
+    return this.comments?.length > 0;
   }
 
   handleOverlayClick(event) {

@@ -1,0 +1,113 @@
+<template>
+  <div class="px-6 py-8 ui-border-top ui-border-neutral-500">
+    <div class="-mt-3 mb-4">
+      <c-ui-tag
+        size="large"
+        value={reservationPeriod}
+        variant="secondary"
+      >
+      </c-ui-tag>
+    </div>
+
+    <div class="slds-grid">
+      <img class="w-40 height_fit-content" src={record.Photo_URL__c} alt="Image"/>
+      <div class="slds-grid slds-grid_align-spread w-full ml-5">
+        <div>
+          <div class="slds-grid slds-grid_vertical-align-center">
+            <div
+              class="slds-grid slds-grid_vertical pointer"
+              onclick={handleOpenOverview}
+            >
+              <div class="ui-subtitle">
+                {record.Author__c}
+              </div>
+              <div class="mb-1 ui-title-2">
+                {record.Name}
+              </div>
+            </div>
+            <c-ui-tag
+              if:true={status}
+              class="ml-4"
+              size="large"
+              value={status}
+            >
+            </c-ui-tag>
+          </div>
+
+          <div class="slds-grid slds-wrap">
+            <template for:each={record.categories} for:item="category">
+              <c-ui-tag
+                key={category.Id}
+                class="my-1"
+                value={category}
+                variant="secondary"
+              ></c-ui-tag>
+            </template>
+          </div>
+
+          <div class="ui-body-1 mb-2">
+            Reader: {reader}
+          </div>
+
+          <div class="ui-body-1 mb-2">
+            Reader address: {address}
+          </div>
+        </div>
+        <div class="ml-6">
+          <div class="slds-grid slds-grid_align-end">
+            <c-ui-button
+              icon-name="chat"
+              variant="link"
+              onclick={handleOpenMessenger}
+            ></c-ui-button>
+            <c-ui-button
+              icon-name="history"
+              variant="link"
+              onclick={handleOpenBookHistory}
+            ></c-ui-button>
+            <c-ui-button
+              icon-name="edit"
+              variant="link"
+              onclick={handleOpenEditionModal}
+            ></c-ui-button>
+            <c-ui-button
+              icon-name="delete"
+              variant="link"
+              onclick={handleOpenDeletionModal}
+            ></c-ui-button>
+          </div>
+
+          <div class="slds-grid slds-grid_align-center slds-combobox min-w-30 button-column">
+
+            <div
+              if:true={isStatusCreated}
+              class="slds-grid slds-combobox w-full button-column"
+            >
+              <c-ui-button
+                if:true={record.isAllowed}
+                class="w-full"
+                variant="secondary"
+                value="confirm reservation"
+                onclick={handleOpenReservationConfirmModal}
+              ></c-ui-button>
+              <c-ui-button
+                class="w-full"
+                variant="secondary"
+                value="reject reservation"
+                onclick={handleOpenRejectReservationModal}
+              ></c-ui-button>
+            </div>
+
+            <c-ui-button
+              if:true={isFinishedAllowed}
+              class="w-full"
+              variant="secondary"
+              value="finish"
+              onclick={handleOpenReservationFinishModal}
+            ></c-ui-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

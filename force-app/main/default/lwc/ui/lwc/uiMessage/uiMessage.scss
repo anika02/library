@@ -1,0 +1,25 @@
+.ui-message-container {
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 75%;
+
+  &_current {
+    border-bottom-right-radius: 0;
+    margin-left: auto;
+  }
+
+  &_other {
+    border-bottom-left-radius: 0;
+    margin-right: auto;
+  }
+}
+
+.ui-message-time {
+  &_current {
+    text-align: start;
+  }
+
+  &_other {
+    text-align: end;
+  }
+}

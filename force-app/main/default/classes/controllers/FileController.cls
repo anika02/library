@@ -1,4 +1,4 @@
-public with sharing class  FileController {
+public with sharing class FileController {
     @AuraEnabled(Cacheable = true)
     public static Id getFileIdByDocumentId(String documentId) {
 

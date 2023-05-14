@@ -5,9 +5,37 @@
     is-open={overviewIsOpen}
     record={overviewRecord}
     onclose={handleCloseOverview}
-    onwish_list={handleWishList}
     onfavourite={handleFavourite}
+    onopen_cancel_reservation={handleOpenCancelReservationModal}
+    onopen_edit_reservation={handleOpenReservationModal}
+    onopen_messenger={handleOpenMessenger}
+    onopen_reservation={handleOpenReservationModal}
+    onwish_list={handleWishList}
   ></c-ui-reader-book-overview>
+
+  <c-ui-messenger
+    if:true={messengerIsOpen}
+    is-open={messengerIsOpen}
+    record={messengerRecord}
+    onclose={handleCloseMessenger}
+  ></c-ui-messenger>
+
+  <c-ui-reservation-modal
+    if:true={reservationIsOpen}
+    is-open={reservationIsOpen}
+    record={reservationRecord}
+    onmodal_close={handleCloseReservationModal}
+    onmodal_ok={handleOkReservationModal}
+  ></c-ui-reservation-modal>
+
+  <c-ui-reservation-confirm-modal
+    if:true={reservationConfirmIsOpen}
+    is-open={reservationConfirmIsOpen}
+    record={reservationRecord}
+    status={canceledStatus}
+    onmodal_close={handleCloseReservationConfirmModal}
+    onmodal_ok={handleOkReservationConfirmModal}
+  ></c-ui-reservation-confirm-modal>
 
   <div class="bg-neutral-0 h-full">
     <c-search-search-tools
@@ -23,8 +51,9 @@
             <c-search-book-list-item
               record={item}
               onopen_overview={handleOpenOverview}
-              onwish_list={handleWishList}
               onfavourite={handleFavourite}
+              onwish_list={handleWishList}
+              onopen_reservation={handleOpenReservationModal}
             ></c-search-book-list-item>
           </div>
         </template>
@@ -32,7 +61,7 @@
     </div>
 
     <c-ui-empty-page
-      if:false={hasRecords}
+      if:true={isEmptyPage}
       title="No books was found"
     ></c-ui-empty-page>
   </div>

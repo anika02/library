@@ -10,6 +10,10 @@ public inherited sharing class FavouriteService {
         return favourite;
     }
 
+    public static void deleteRecordsByBookIds(List<Id> bookIds) {
+        SecurityUtils.saveDelete(FavouriteSelector.selector.getByBookIds(bookIds));
+    }
+
     public static void removeFromFavourite(Id favouriteId) {
         SecurityUtils.saveDelete(new Favourite__c(Id = favouriteId));
     }

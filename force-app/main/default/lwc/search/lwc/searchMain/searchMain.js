@@ -1,47 +1,43 @@
 import { LightningElement, track, wire } from 'lwc';
 import { loadStyle } from "lightning/platformResourceLoader";
+import { refreshApex } from "@salesforce/apex";
 
 import userId from '@salesforce/user/Id';
 import styles from "@salesforce/resourceUrl/lib";
 
-import getOtherUserBooks from '@salesforce/apex/BookController.getOtherUserBooks';
-import addToFavourite from '@salesforce/apex/FavouriteController.addToFavourite';
-import removeFromFavourite from '@salesforce/apex/FavouriteController.removeFromFavourite';
-import addToWishList from '@salesforce/apex/WishListController.addToWishList';
-import removeFromWishList from '@salesforce/apex/WishListController.removeFromWishList';
+import { STATUS_CANCELED } from 'c/utils';
+
 import { helper } from './helper';
-import {refreshApex} from "@salesforce/apex";
+
+import addToFavourite from '@salesforce/apex/FavouriteController.addToFavourite';
+import addToWishList from '@salesforce/apex/WishListController.addToWishList';
+import getBooks from '@salesforce/apex/BookController.getOtherUserBooks';
+import removeFromFavourite from '@salesforce/apex/FavouriteController.removeFromFavourite';
+import removeFromWishList from '@salesforce/apex/WishListController.removeFromWishList';
+import updateReservationStatus from '@salesforce/apex/ReservationController.updateReservationStatus';
+import upsertReservation from '@salesforce/apex/ReservationController.upsertReservation';
 
 export default class SearchMain extends LightningElement {
+
   userId = userId;
+
+  @track records = [];
+
+  @track messengerIsOpen = false;
+  @track messengerRecord;
 
   @track overviewIsOpen = false;
   @track overviewRecord;
 
+  @track reservationIsOpen = false;
+  @track reservationConfirmIsOpen = false;
+  @track reservationRecord;
+
+  @track filteredItems = {};
   @track searchTerm = '';
-  @track filteredItems = [];
 
-  records = [];
+  canceledStatus = STATUS_CANCELED;
   isLoading = true;
-
-  wiredBooks;
-  @wire(getOtherUserBooks, {
-    ownerId: '$userId',
-    searchTerm: '$searchTerm',
-    categories: '$filteredItems'
-  })
-  setBooks(response) {
-    this.wiredBooks = response;
-    const { error, data } = response;
-
-    if (data) {
-      this.records = helper.mapData(data);
-    } else if (error) {
-      console.log(error);
-    }
-
-    this.isLoading = false;
-  }
 
   connectedCallback() {
     Promise.all([
@@ -49,8 +45,40 @@ export default class SearchMain extends LightningElement {
     ]);
   }
 
+  @wire(getBooks, {
+    ownerId: '$userId',
+    searchTerm: '$searchTerm',
+    filteredItems: '$filteredItems'
+  })
+  wiredBooks(response) {
+    this.isLoading = true;
+    const { data, error } = this.wiredResponse = response;
+
+    if (data) {
+      this.records = helper.mapData(data);
+      this.isLoading = false;
+    } else if (error) {
+      console.log(error);
+      this.isLoading = false;
+    }
+  }
+
   get hasRecords() {
-    return this.records?.length > 0;
+    return !this.isLoading && this.records?.length > 0;
+  }
+
+  get isEmptyPage() {
+    return !this.isLoading && this.records?.length === 0;
+  }
+
+  handleOpenMessenger(event) {
+    this.messengerRecord = this.records
+      .find(item => item.Reservations__r && item.Reservations__r[0].Id === event.detail.reservationId);
+    this.messengerIsOpen = true;
+  }
+
+  handleCloseMessenger() {
+    this.messengerIsOpen = false;
   }
 
   handleOpenOverview(event) {
@@ -62,59 +90,88 @@ export default class SearchMain extends LightningElement {
     this.overviewIsOpen = false;
   }
 
+  handleOpenReservationModal(event) {
+    this.reservationRecord = this.records.find(item => item.Id === event.detail.recordId);
+    this.reservationIsOpen = true;
+  }
+
+  async handleOkReservationModal(event) {
+    this.isLoading = true;
+    this.handleCloseReservationModal();
+
+    await upsertReservation({ jsonString: JSON.stringify(event.detail.reservation) });
+    await this.refreshRecords(event.detail.reservation.Book__c);
+    this.isLoading = false;
+  }
+
+  handleCloseReservationModal() {
+    this.reservationIsOpen = false;
+    this.reservationRecord = {};
+  }
+
+  handleOpenCancelReservationModal(event) {
+    this.reservationRecord = event.detail.record;
+    this.reservationConfirmIsOpen = true;
+  }
+
+  async handleOkReservationConfirmModal(event) {
+    this.isLoading = true;
+    this.reservationConfirmIsOpen = false;
+
+    await updateReservationStatus(event.detail);
+    await this.refreshRecords(this.reservationRecord.Id);
+
+    this.reservationRecord = {};
+  }
+
+  handleCloseReservationConfirmModal() {
+    this.reservationConfirmIsOpen = false;
+    this.reservationRecord = {};
+  }
+
+  handleFilter(event) {
+    this.filteredItems = event.detail.selected;
+  }
+
   handleSearch(event) {
     this.searchTerm = event.detail.value;
   }
 
-  handleFilter(event) {
+  async handleFavourite(event) {
     this.isLoading = true;
-    this.filteredItems = event.detail.selected;
-  }
+    const eventRecordId = event.detail.recordId;
+    const record = this.records.find(item => item.Id === eventRecordId);
 
-  handleFavourite(event) {
-    this.isLoading = true;
-    const favouriteRecord = event.detail.record;
-
-    if (favouriteRecord.Favourites__r) {
-      removeFromFavourite({ favouriteId: favouriteRecord.Favourites__r[0].Id })
-        .then(() => { this.refreshPage(event.detail.record.Id); })
-        .catch((error) => {
-          console.log(error);
-        });
+    if (record.Favourites__r) {
+      await removeFromFavourite({ favouriteId: record.Favourites__r[0].Id });
     } else {
-      addToFavourite({ bookId: favouriteRecord.Id })
-        .then(() => { this.refreshPage(event.detail.record.Id); })
-        .catch((error) => {
-          console.log(error);
-        });
+      await addToFavourite({ bookId: record.Id });
     }
+
+    this.refreshRecords(eventRecordId);
+    this.isLoading = false;
   }
 
-  handleWishList(event) {
+  async handleWishList(event) {
     this.isLoading = true;
-    const wishRecord = event.detail.record;
+    const eventRecordId = event.detail.recordId;
+    const record = this.records.find(item => item.Id === eventRecordId);
 
-    if (wishRecord.Wish_Lists__r) {
-      removeFromWishList({ wishListId: wishRecord.Wish_Lists__r[0].Id })
-        .then(() => { this.refreshPage(event.detail.record.Id); })
-        .catch((error) => {
-          console.log(error);
-        });
+    if (record.Wish_Lists__r) {
+      await removeFromWishList({ wishListId: record.Wish_Lists__r[0].Id });
     } else {
-      addToWishList({ bookId: wishRecord.Id })
-        .then(() => { this.refreshPage(event.detail.record.Id); })
-        .catch((error) => {
-          console.log(error);
-        });
+      await addToWishList({ bookId: record.Id });
     }
+
+    await this.refreshRecords(eventRecordId);
+    this.isLoading = false;
   }
 
-  refreshPage(recordId) {
-    refreshApex(this.wiredBooks).then(() => {
-      if (this.overviewIsOpen) {
-        this.overviewRecord = this.records.filter(item => item.Id === recordId)[0];
-      }
-      this.isLoading = false;
-    });
+  async refreshRecords(recordId) {
+    await refreshApex(this.wiredResponse);
+
+    if (this.overviewIsOpen) {
+      this.overviewRecord = this.records.find(item => item.Id === recordId);
+    }
   }
 }

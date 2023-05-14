@@ -16,6 +16,11 @@
                 <label>created</label>
             </value>
             <value>
+                <fullName>canceled</fullName>
+                <default>false</default>
+                <label>canceled</label>
+            </value>
+            <value>
                 <fullName>confirmed</fullName>
                 <default>false</default>
                 <label>confirmed</label>
@@ -26,19 +31,19 @@
                 <label>rejected</label>
             </value>
             <value>
-                <fullName>in progress</fullName>
+                <fullName>finished by owner</fullName>
                 <default>false</default>
-                <label>in progress</label>
+                <label>finished by owner</label>
             </value>
             <value>
-                <fullName>success</fullName>
+                <fullName>finished by reader</fullName>
                 <default>false</default>
-                <label>success</label>
+                <label>finished by reader</label>
             </value>
             <value>
-                <fullName>fail</fullName>
+                <fullName>finished</fullName>
                 <default>false</default>
-                <label>fail</label>
+                <label>finished</label>
             </value>
         </valueSetDefinition>
     </valueSet>

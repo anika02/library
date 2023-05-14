@@ -1,0 +1,29 @@
+<template>
+  <c-ui-modal
+    button-done-value="Finish"
+    is-open={isOpen}
+    title="Finish Current Book Crossing"
+    subtitle={subtitle}
+    onmodal_close={handleModalClose}
+    onmodal_ok={handleModalOk}>
+
+    <div class="my-6 mx-6">
+      <div class="p-2">
+        <lightning-textarea
+          label="Comment for book"
+          max-length="4000"
+          name="BookComment"
+          onchange={handleChange}
+        ></lightning-textarea>
+      </div>
+      <div class="p-2">
+        <lightning-textarea
+          label="Comment for book owner"
+          max-length="3000"
+          name="OwnerComment"
+          onchange={handleChange}
+        ></lightning-textarea>
+      </div>
+    </div>
+  </c-ui-modal>
+</template>

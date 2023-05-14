@@ -1,0 +1,63 @@
+<template>
+  <c-ui-book-list-item
+    record={record}
+    status={status}
+    onopen_overview={handleOpenOverview}
+  >
+
+    <slot slot="header">
+      <div class="-mt-3 mb-4">
+        <c-ui-tag
+          size="large"
+          value={reservationPeriod}
+          variant="secondary"
+        >
+        </c-ui-tag>
+      </div>
+    </slot>
+
+    <slot slot="actions">
+      <c-ui-button
+        icon-name="chat"
+        variant="link"
+        onclick={handleOpenMessenger}
+      ></c-ui-button>
+      <c-ui-button
+        icon-name={favouriteIcon}
+        variant="link"
+        onclick={handleFavourite}
+      ></c-ui-button>
+      <c-ui-button
+        icon-name={wishListIcon}
+        variant="link"
+        onclick={handleWishList}
+      ></c-ui-button>
+    </slot>
+
+    <slot slot="bottom-actions">
+      <c-ui-button
+        if:true={isStatusCreated}
+        class="w-full"
+        value="reschedule reservation"
+        variant="secondary"
+        onclick={handleOpenEditReservationModal}
+      ></c-ui-button>
+      <c-ui-button
+        if:true={isStatusCreated}
+        class="w-full"
+        value="cancel reservation"
+        variant="secondary"
+        onclick={handleOpenCancelReservationModal}
+      ></c-ui-button>
+
+      <c-ui-button
+        if:true={isFinishedAllowed}
+        class="w-full"
+        variant="secondary"
+        value="finish"
+        onclick={handleOpenReservationFinishModal}
+      ></c-ui-button>
+    </slot>
+
+  </c-ui-book-list-item>
+</template>

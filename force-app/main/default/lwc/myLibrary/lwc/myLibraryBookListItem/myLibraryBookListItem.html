@@ -8,16 +8,17 @@
       <c-ui-button
         icon-name="history"
         variant="link"
+        onclick={handleOpenBookHistory}
       ></c-ui-button>
       <c-ui-button
         icon-name="edit"
         variant="link"
-        onclick={handleOpenEditionForm}
+        onclick={handleOpenEditionModal}
       ></c-ui-button>
       <c-ui-button
         icon-name="delete"
         variant="link"
-        onclick={handleOpenDeletionForm}
+        onclick={handleOpenDeletionModal}
       ></c-ui-button>
     </slot>
 

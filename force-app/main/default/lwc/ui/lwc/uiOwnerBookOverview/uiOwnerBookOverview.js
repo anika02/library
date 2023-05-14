@@ -8,7 +8,15 @@ export default class UiOwnerBookOverview extends LightningElement {
     this.dispatchEvent(new CustomEvent('close'));
   }
 
-  handleOpenEditionForm() {
+  handleOpenBookHistory() {
+    this.dispatchEvent(new CustomEvent('open_book_history', {
+      detail: {
+        searchTerm: this.record?.Name,
+      },
+    }));
+  }
+
+  handleOpenEditionModal() {
     this.dispatchEvent(new CustomEvent('open_edition', {
       detail: {
         record: this.record,
@@ -16,7 +24,7 @@ export default class UiOwnerBookOverview extends LightningElement {
     }));
   }
 
-  handleOpenDeletionForm() {
+  handleOpenDeletionModal() {
     this.dispatchEvent(new CustomEvent('open_deletion', {
       detail: {
         record: this.record,
