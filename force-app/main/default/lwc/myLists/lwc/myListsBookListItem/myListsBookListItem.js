@@ -6,7 +6,7 @@ export default class MyListsBookListItem extends LightningElement {
 
   @api set record(v) {
     this._record = { ...v };
-  };
+  }
 
   get record() {
     return this._record;

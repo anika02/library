@@ -12,7 +12,7 @@ export default class UiBookListItem extends LightningElement {
   @api set record(value) {
     this._record = value;
     this.generateDescription();
-  };
+  }
 
   get record() {
     return this._record;
@@ -20,7 +20,7 @@ export default class UiBookListItem extends LightningElement {
 
   @api set status(value) {
     this._status = value?.toUpperCase();
-  };
+  }
 
   get status() {
     return this._status;

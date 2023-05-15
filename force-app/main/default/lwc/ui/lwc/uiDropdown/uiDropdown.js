@@ -16,7 +16,7 @@ export default class UiDropdown extends LightningElement {
   _value;
   @api set value(v) {
     this._value = this.options.find(option => option.value === v).label;
-  };
+  }
 
   get value() {
     return this._value;
